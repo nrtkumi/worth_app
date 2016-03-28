@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        username: ユーザー名
+        email: メールアドレス
+        job: 職業
+        gender: 性別
+        introduction: 紹介文
+        password: パスワード
+        password_confirmation: もう1回！
+        remember_me: 常時ログイン
