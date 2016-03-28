@@ -4,10 +4,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       flash.notice = "ログインしました！"
-        sign_in_and_redirect @user
-      else
-        session["devise.user_attributes"] = @user.attributes
-        redirect_to new_user_registration_url
-      end
+      sign_in_and_redirect @user
+    else
+      session["devise.user_attributes"] = @user.attributes
+      redirect_to new_user_registration_url
     end
+  end
 end
