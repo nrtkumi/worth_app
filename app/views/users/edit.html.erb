@@ -1,2 +1,22 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <p><%= @user.errors.count %>件のエラーがあります。</p>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :job %>
+  <%= f.select :job, @jobs %>
+  <%= f.label :gender %>
+  <%= f.radio_button :gender, 0 %>男
+  <%= f.radio_button :gender, 1 %>女
+  <%= f.label :introduction %>
+  <%= f.text_area :introduction %>
+  <%= f.submit '更新' %>
+
+<% end %>

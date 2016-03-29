@@ -1,2 +1,9 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+名前：<%= @user.username %>
+職業：<%= @user.job %>
+性別：<% if @user.gender == 0 %>
+男
+<% elsif @user.gender == 1 %>
+女
+<% end %>
+紹介文：<%= @user.introduction %>
+<%= link_to 'プロフィール編集', edit_user_path(@user.id) %>
