@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      project: プロジェクト
     attributes:
       user:
         username: ユーザー名
@@ -13,3 +14,6 @@ ja:
         password_confirmation: もう1回！
         remember_me: 常時ログイン
         image: プロフィール画像
+      project:
+        title: タイトル
+        description: プロジェクト紹介

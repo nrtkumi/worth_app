@@ -1,3 +1,4 @@
+<!-- ユーザープロフィール -->
 <!-- <%= image_tag "/user_images/#{@user.image}" %> -->
 名前：<%= @user.username %>
 職業：<%= @user.job %>
@@ -7,6 +8,7 @@
 女
 <% end %>
 紹介文：<%= @user.introduction %>
+
 <% if current_user?(@user) %>
   <%= link_to 'プロフィール編集', edit_user_path(@user.id) %>
 <% end %>
