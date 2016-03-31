@@ -1,2 +1,2 @@
 <!-- index.html.erbのrenderの中身 -->
-<li><%= @project.title %></li>
+<li><%= link_to project.title, project_path(project.id) %></li>
