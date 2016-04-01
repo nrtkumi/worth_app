@@ -19,6 +19,9 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.build(project_params)
+    file = params[:project][:image]
+    @project.set_project_image(file)
+    
     if @project.save
       redirect_to @project, notice: '新規プロジェクトを募集開始しました'
     else
@@ -31,6 +34,9 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    file = params[:project][:image]
+    @project.set_project_image(file)
+
     @project = Project.find(params[:id])
     if @project.update(project_params)
       redirect_to @project, notice: 'プロジェクト情報が更新されました'

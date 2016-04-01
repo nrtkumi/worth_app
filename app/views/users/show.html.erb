@@ -1,5 +1,10 @@
 <!-- ユーザープロフィール -->
-<!-- <%= image_tag "/user_images/#{@user.image}" %> -->
+<% if @user.image %>
+  <%= image_tag "/user_images/#{@user.image}" %>
+<% else %>
+  <%= image_tag "default.jpeg" %>
+<% end %>
+
 名前：<%= @user.username %>
 職業：<%= @user.job %>
 性別：<% if @user.gender == 0 %>
@@ -11,4 +16,10 @@
 
 <% if current_user?(@user) %>
   <%= link_to 'プロフィール編集', edit_user_path(@user.id) %>
+<% end %>
+
+プロジェクト
+<% @projects.each do |project| %>
+  <%= image_tag "/project_images/#{project.image}" %>
+  <%= link_to project.title, project_path(project.id) %>
 <% end %>
