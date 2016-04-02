@@ -1,25 +1,160 @@
 <!-- ユーザープロフィール -->
-<% if @user.image %>
-  <%= image_tag "/user_images/#{@user.image}" %>
-<% else %>
-  <%= image_tag "default.jpeg" %>
-<% end %>
+	<%= stylesheet_link_tag "users", :media => "all" %>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-名前：<%= @user.username %>
-職業：<%= @user.job %>
-性別：<% if @user.gender == 0 %>
-男
-<% elsif @user.gender == 1 %>
-女
-<% end %>
-紹介文：<%= @user.introduction %>
 
-<% if current_user?(@user) %>
-  <%= link_to 'プロフィール編集', edit_user_path(@user.id) %>
-<% end %>
+	<div class="sp-menu sp">
+		<ul>
+			<li><a href="#"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
+			<li><a href="#"><i class="fa fa-list"></i>ワード検索</a></li>
+			<li><a href="#"><i class="fa fa-asterisk"></i>カテゴリ検索</a></li>
+			<li><a href="#"><i class="fa fa-user"></i>ユーザーページ</a></li>
+			<li><a href="#"><i class="fa fa-commenting-o"></i>チャット</a></li>
+			<li class="close"><a href="#"><i class="fa fa-times-circle"></i>閉じる</a></li>
+		</ul>
+	</div>
+	<section class="header">
+		<div class="header-contents">
+			<div class="fix-contents">
+				<h4>Worse</h4>
+				<!-- phone -->
+				<a class="fix-list sp" href="javascript:false">
+					<i class="fa fa-bars sp-bar"></i>
+				</a>
+				<!-- phone -->
 
-プロジェクト
-<% @projects.each do |project| %>
-  <%= image_tag "/project_images/#{project.image}" %>
-  <%= link_to project.title, project_path(project.id) %>
-<% end %>
+				<ul class="fix-list pc">
+					<li><a href="#"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
+					<li class="drop-child">
+						<a href="#"><i class="fa fa-search"></i>探す<i class="fa fa-caret-down"></i></a>
+						<ul class="drop-down">
+							<li><hr></li>
+							<li>カテゴリ</li>
+							<li>ワード</li>
+						</ul>
+					</li>
+					<li  class="drop-child">
+						<a href="#"><i class="fa fa-user"></i>ユーザー<i class="fa fa-caret-down"></i></a>
+						<ul class="drop-down">
+							<li><hr></li>
+							<li>マイページ</li>
+							<li>ログイン</li>
+						</ul>
+					</li>
+					<li><a href="#"><i class="fa fa-commenting-o"></i>チャット</a></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+	<section class="profile sub-page">
+		<div class="profile-grid">
+			<%= image_tag "/user_images/#{@user.image}" %>
+			<h3 class="user_name"><%= @user.username %></h3>
+			<p class="intro">
+				<%= @user.introduction %>
+			</p>
+			<ul class="another_info">
+				<li><i class="fa fa-cog"></i><%= @user.job %></li>
+				<li><i class="fa fa-link"></i>http:google.com</li>
+			</ul>
+			<p style="clear: both"></p>
+			<% if current_user?(@user) %>
+			  <div class="edit">
+			  	<%= link_to edit_user_path(@user.id) do %>
+			  		<i class="fa fa-plus"></i>
+			  	<% end %>
+			  </div>
+			<% end %>
+		</div>
+	</section>
+	<section class="user_projects">
+		<ul>
+			<li>マイプロジェクト</li>
+			<li>ハート付けたプロジェクト</li>
+		</ul>
+		<div class="projects_zone">
+			<p>not projects </p>
+		</div>
+	</section>
+	<section class="footer">
+		<div class="first">
+			<ul>
+				<li><a href="#">プロジェクトを作る</a></li>
+				<li><a href="#">Worseについて</a></li>
+			</ul>
+		</div>
+		<div class="second">
+			<div class="one-block">
+				<h5>Menu</h5>
+				<ul>
+					<li><a href="#">プロジェクトを作る</a></li>
+					<li><a href="#">ワード検索</a></li>
+					<li><a href="#">カテゴリ検索</a></li>
+					<li><a href="#">ユーザーページ</a></li>
+					<li><a href="#">チャット</a></li>
+					<li><a href="#">ログイン</a></li>
+				</ul>
+			</div>
+			<div class="twe-block">
+				<h5>developer</h5>
+				<ul>
+					<li><a href="#">@nyaratakumi</a></li>
+					<li><a href="#">@_Ghostrick_</a></li>
+					<li><a href="#">@Tobira_xiexie</a></li>
+				</ul>
+			</div>
+			<div class="three-block">
+			</div>
+		</div>
+		<div class="clear"></div>
+	</section>
+	      <% if user_signed_in? %>
+        <strong><%= link_to current_user.username, user_path(current_user.id) %></strong>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'サインアップ', new_user_registration_path %>
+        <%= link_to 'ログイン', new_user_session_path %>
+      <% end %>
+
+
+<script type="text/javascript">
+$(function(){
+	$(window).scroll(function (){
+        var header_top = $(".fix-contents").offset().top;
+        if( header_top <= $(this).scrollTop() ){
+        	$('.fix-contents').addClass('fix');
+        }
+        if(  $(this).scrollTop() == 0 )  {
+        	$('.fix-contents').removeClass('fix');
+        }
+    });
+	var sp_menu = $('.sp-menu');
+	$('.fix-list.sp').on('click',function(){
+		if(!$(sp_menu).hasClass('show')){
+			$(sp_menu).addClass('show');
+			$('.fix-contents').addClass('fix');
+		} else {
+			$(sp_menu).removeClass('show');
+			$('.fix-contents').removeClass('fix');
+		}
+	});
+	$('.sp-menu > ul > .close').on('click',function(){
+		$(sp_menu).removeClass('show');
+		$('.fix-contents').removeClass('fix');
+	});
+    $('.down-icon').on('click',function(){
+    	$("html,body").animate({scrollTop:$('.picup').offset().top},1300,'easeOutQuint');
+    });
+    $('.drop-child').hover(
+    	function(){
+    		var targetEl = $(this).find('ul');
+    		targetEl.css({display:'block'});
+			targetEl.find('li').animate({top:'0',opacity:'1'},300);
+    	},function(){
+    		var targetEl = $(this).find('ul');
+       		targetEl.find('li').css({top:'-10px',opacity:'0'});
+    		targetEl.css({'display':'none'});
+    	}
+    );
+});
+</script>

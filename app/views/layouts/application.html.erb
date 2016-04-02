@@ -2,27 +2,16 @@
 <html>
 <head>
   <title>Worth</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+   	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  	<%= csrf_meta_tags %>
+  	<script   src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+	<script   src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 </head>
 <body>
-  <header>
-    <nav>
-      <% if user_signed_in? %>
-        <strong><%= link_to current_user.username, user_path(current_user.id) %></strong>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'サインアップ', new_user_registration_path %>
-        <%= link_to 'ログイン', new_user_session_path %>
-      <% end %>
-    </nav>
-  </header>
 
-
-  <!-- flash message -->
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
 <%= yield %>
 
