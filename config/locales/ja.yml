@@ -14,6 +14,7 @@ ja:
         password_confirmation: もう1回！
         remember_me: 常時ログイン
         image: プロフィール画像
+        url: Webサイト
       project:
         title: タイトル
         description: プロジェクト紹介
