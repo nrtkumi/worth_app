@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: [:twitter]
 
   has_many :projects
+  has_many :likes
 
   validates :username, presence: true
 
