@@ -2,16 +2,20 @@
 <%= image_tag "/project_images/#{@project.image}" %>
 <%= @project.title %>
 <%= @project.description %>
-<%= @project.user.username %>
+<%= link_to @project.user.username, user_path(@project.user) %>
 
-<% if current_user.likes.find_by(project_id: @project.id) %>
-  <%= link_to 'いいね！を取り消す', unlike_path(@project.id), method: :delete %>
-<% else %>
-  <%= link_to 'いいね！', like_path(@project.id), method: :post %>
+<% if user_signed_in? %>
+  <% if current_user.likes.find_by(project_id: @project.id) %>
+    <%= link_to 'いいね！を取り消す', unlike_path(@project.id), method: :delete %>
+  <% else %>
+    <%= link_to 'いいね！', like_path(@project.id), method: :post %>
+  <% end %>
 <% end %>
 
 <%= @project.likes.count %>
-<% if current_user?(@project.user) %>
-  <%= link_to 'プロジェクト編集', edit_project_path(@project.id) %>
-  <%= link_to "削除", project_path(@project.id), method: "delete", "data-confirm" => "本当に削除しますか？" %>
+<% if user_signed_in? %>
+  <% if current_user?(@project.user) %>
+    <%= link_to 'プロジェクト編集', edit_project_path(@project.id) %>
+    <%= link_to "削除", project_path(@project.id), method: "delete", "data-confirm" => "本当に削除しますか？" %>
+  <% end %>
 <% end %>
