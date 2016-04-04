@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @projects = @user.projects
+    @like_projects = @user.like_projects
   end
 
   def edit

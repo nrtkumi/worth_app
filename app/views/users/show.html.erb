@@ -55,7 +55,9 @@
 			</p>
 			<ul class="another_info">
 				<li><i class="fa fa-cog"></i><%= @user.job %></li>
-				<li><i class="fa fa-link"></i><%= link_to @user.url, @user.url %></a></li>
+				<% if @user.url %>
+					<li><i class="fa fa-link"></i><%= link_to @user.url, @user.url %></a></li>
+				<% end %>
 			</ul>
 			<p style="clear: both"></p>
 			<% if current_user?(@user) %>

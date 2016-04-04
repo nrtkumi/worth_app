@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :user
   has_many :likes
+  has_many :like_users, through: :likes, source: :user
 
   validates :title, presence: true
   validates :description, presence: true
