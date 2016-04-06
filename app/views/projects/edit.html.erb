@@ -14,5 +14,23 @@
   <%= f.file_field :image %>
   <%= f.label :description %>
   <%= f.text_area :description %>
+
+  <%= f.text_area :description %>
+  キャプション(50文字以内)<%= f.text_area :caption %>
+
+  <%= f.check_box :business %>ビジネス・スタートアップ
+  <%= f.check_box :social %>社会貢献
+  <%= f.check_box :music %>音楽
+  <%= f.check_box :art %>アート
+  <%= f.check_box :event %>イベント
+  <%= f.check_box :product %>プロダクト
+  <%= f.check_box :app %>アプリ
+  <%= f.check_box :game %>ゲーム
+  <%= f.check_box :food %>フード
+  <%= f.check_box :global %>グローバル
+  <%= f.check_box :fashion %>ファッション
+  <%= f.check_box :movie %>ムービー
+  <%= f.check_box :book %>本
+
   <%= f.submit '更新！' %>
 <% end %>

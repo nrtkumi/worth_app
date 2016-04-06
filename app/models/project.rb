@@ -7,6 +7,8 @@ class Project < ActiveRecord::Base
   validates :description, presence: true
   validates :user_id, presence: true
   validates :image, presence: true
+  validates :caption, presence: true
+  validates :caption, length: { maximum: 50 }
 
   def set_project_image(file)
     if !file.nil?
