@@ -12,6 +12,58 @@
   <% end %>
 <% end %>
 
+<% if @project.business == 1 %>
+  ビジネス
+<% end %>
+
+<% if @project.social == 1 %>
+  社会貢献
+<% end %>
+
+<% if @project.music == 1 %>
+  音楽
+<% end %>
+
+<% if @project.art == 1 %>
+  アート
+<% end %>
+
+<% if @project.event == 1 %>
+  イベント
+<% end %>
+
+<% if @project.product == 1 %>
+  プロダクト
+<% end %>
+
+<% if @project.app == 1 %>
+  アプリ
+<% end %>
+
+<% if @project.game == 1 %>
+  ゲーム
+<% end %>
+
+<% if @project.food == 1 %>
+  フード
+<% end %>
+
+<% if @project.global == 1 %>
+  グローバル
+<% end %>
+
+<% if @project.fashion == 1 %>
+  ファッション
+<% end %>
+
+<% if @project.movie == 1 %>
+  ムービー
+<% end %>
+
+<% if @project.book == 1 %>
+  本
+<% end %>
+
 <%= @project.likes.count %>
 <% if user_signed_in? %>
   <% if current_user?(@project.user) %>
