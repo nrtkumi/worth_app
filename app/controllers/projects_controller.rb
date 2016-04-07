@@ -51,6 +51,11 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+  def search
+    @projects = Project.search(params[:q])
+    render :index
+  end
+
 
   private
 

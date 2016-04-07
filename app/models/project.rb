@@ -17,4 +17,14 @@ class Project < ActiveRecord::Base
       self.image = file_name
     end
   end
+
+  class << self
+    def search(query)
+      rel = order(:created_at)
+      if query.present?
+        rel = rel.where("title LIKE ? OR caption LIKE ?", "%#{query}%", "%#{query}%")
+      end
+      rel
+    end
+  end
 end

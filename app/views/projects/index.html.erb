@@ -1,4 +1,10 @@
 <h1>プロジェクト一覧</h1>
+
+<%= form_tag :search_projects, method: :get do %>
+  <%= text_field_tag "q", params[:q] %>
+  <%= submit_tag "検索" %>
+<% end %>
+
 <ul>
   <%= render @projects %>
 </ul>

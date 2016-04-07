@@ -1,1 +1,5 @@
+<%= form_tag :search_projects, method: :get do %>
+  <%= text_field_tag "q", params[:q] %>
+  <%= submit_tag "プロジェクト検索" %>
+<% end %>
 <h1>Top#home</h1>
