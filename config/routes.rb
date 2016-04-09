@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :projects do
     collection do
       get :search
+      get :category
     end
   end
   post 'like/:project_id' => 'likes#like', as: 'like'
