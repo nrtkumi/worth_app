@@ -26,5 +26,23 @@ class Project < ActiveRecord::Base
       end
       rel
     end
+
+    def category(tag)
+      rel = order(:created_at)
+      rel = rel.where(business: 1) if tag == "ビジネス"
+      rel = rel.where(social: 1) if tag == "社会貢献"
+      rel = rel.where(music: 1) if tag == "音楽"
+      rel = rel.where(art: 1) if tag == "アート"
+      rel = rel.where(event: 1) if tag == "イベント"
+      rel = rel.where(product: 1) if tag == "プロダクト"
+      rel = rel.where(app: 1) if tag == "アプリ"
+      rel = rel.where(game: 1) if tag == "ゲーム"
+      rel = rel.where(food: 1) if tag == "フード"
+      rel = rel.where(global: 1) if tag == "グローバル"
+      rel = rel.where(fashion: 1) if tag == "ファッション"
+      rel = rel.where(movie: 1) if tag == "ムービー"
+      rel = rel.where(book: 1) if tag == "本"
+      rel
+    end
   end
 end

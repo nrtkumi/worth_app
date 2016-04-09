@@ -6,7 +6,7 @@
 <% end %>
 
 <%= form_tag :category_projects, method: :get do %>
-  <%= select :p, :tag, @options, include_blank: '選択してください' %>
+  <%= select :p, :category, @options, include_blank: '選択してください' %>
   <%= submit_tag "検索" %>
 <% end %>
 

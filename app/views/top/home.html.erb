@@ -2,4 +2,9 @@
   <%= text_field_tag "q", params[:q] %>
   <%= submit_tag "プロジェクト検索" %>
 <% end %>
+
+<%= form_tag :category_projects, method: :get do %>
+  <%= select :p, :category, @options, include_blank: '選択してください' %>
+  <%= submit_tag "検索" %>
+<% end %>
 <h1>Top#home</h1>
