@@ -1,6 +1,7 @@
 <!-- ユーザープロフィール -->
 	<%= stylesheet_link_tag "users", :media => "all" %>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<%= javascript_include_tag 'jquery.oncssanimationend', 'data-turbolinks-track' => true %>
 
 
 	<div class="sp-menu sp">
@@ -8,7 +9,11 @@
 			<li><a href="#"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
 			<li><a href="#"><i class="fa fa-list"></i>ワード検索</a></li>
 			<li><a href="#"><i class="fa fa-asterisk"></i>カテゴリ検索</a></li>
-			<li><a href="#"><i class="fa fa-user"></i>ユーザーページ</a></li>
+			<li>
+				<%= link_to  user_path(current_user.id) do %>
+					<i class="fa fa-user"></i>マイページ
+				<% end %>
+			</li>
 			<li><a href="#"><i class="fa fa-commenting-o"></i>チャット</a></li>
 			<li class="close"><a href="#"><i class="fa fa-times-circle"></i>閉じる</a></li>
 		</ul>
@@ -25,20 +30,21 @@
 
 				<ul class="fix-list pc">
 					<li><a href="#"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
-					<li class="drop-child">
-						<a href="#"><i class="fa fa-search"></i>探す<i class="fa fa-caret-down"></i></a>
-						<ul class="drop-down">
-							<li><hr></li>
-							<li>カテゴリ</li>
-							<li>ワード</li>
-						</ul>
-					</li>
+					<li><a href="#"><i class="fa fa-search"></i>探す</a></li>
 					<li  class="drop-child">
 						<a href="#"><i class="fa fa-user"></i>ユーザー<i class="fa fa-caret-down"></i></a>
 						<ul class="drop-down">
 							<li><hr></li>
-							<li>マイページ</li>
-							<li>ログイン</li>
+							<li>
+								<%= link_to 'マイページ', user_path(current_user.id) %>
+							</li>
+							<li>
+								<% if user_signed_in? %>
+        							<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      							<% else %>
+        							<%= link_to 'ログイン', new_user_session_path %>
+      							<% end %>
+							</li>
 						</ul>
 					</li>
 					<li><a href="#"><i class="fa fa-commenting-o"></i>チャット</a></li>
@@ -47,35 +53,124 @@
 		</div>
 	</section>
 	<section class="profile sub-page">
+		<%= form_for @user do |f| %>
 		<div class="profile-grid">
-			<%= image_tag "/user_images/#{@user.image}" %>
-			<h3 class="user_name"><%= @user.username %></h3>
-			<p class="intro">
+			<div class="img-icon">
+				<% if @user.image %>
+  					<%= image_tag "/user_images/#{@user.image}" %>
+				<% else %>
+  					<%= image_tag "default.jpeg" %>
+				<% end %>
+				<%= f.file_field :image , class:'edit-hide' %>
+				<div class="edit-fil edit-hide"><i class="fa fa-camera"></i></div>
+			</div>
+			<h3 class="user_name not-edit"><%= @user.username %></h3>
+			<h3><%= f.text_field :username, class:'user_name edit-hide' %></h3>
+			<p class="intro not-edit">
 				<%= @user.introduction %>
 			</p>
+			<%= f.text_area :introduction, class: 'intro edit-hide', rows: '4' %>
 			<ul class="another_info">
-				<li><i class="fa fa-cog"></i><%= @user.job %></li>
-				<% if @user.url %>
-					<li><i class="fa fa-link"></i><%= link_to @user.url, @user.url %></li>
-				<% end %>
+				<li class="not-edit"><i class="fa fa-cog"></i><%= @user.job %></li>
+				<li class="edit-hide"><i class="fa fa-cog"></i><%= f.text_field :job %></li>
+				<li class="not-edit"><i class="fa fa-link"></i><%= link_to @user.url, @user.url %></li>
+				<li class="edit-hide"><i class="fa fa-link"></i><%= f.text_field :url %></li>
 			</ul>
 			<p style="clear: both"></p>
 			<% if current_user?(@user) %>
-			  <div class="edit">
-			  	<%= link_to edit_user_path(@user.id) do %>
-			  		<i class="fa fa-plus"></i>
-			  	<% end %>
-			  </div>
+			 	<div class="edit show">
+			  		<a href="javascript:false"><i class="fa fa-cogs"></i></a>
+			  	</div>
+				<div class="edit-mode">
+			  		<a href="javascript:false" class="edit-cancel">
+			  			<i class="fa fa-times" style="color: red"></i>
+			  		</a>
+			  		<a href="javascript:false">
+			  			<i class="fa fa-check" style="color: blue">
+			  				<%= f.submit '更新' ,class:'edit-submit'%>
+			  			</i>
+			  		</a>
+			  	</div>
 			<% end %>
 		</div>
+		<% end %>
 	</section>
 	<section class="user_projects">
 		<ul>
-			<li>マイプロジェクト</li>
-			<li>ハート付けたプロジェクト</li>
+			<li list-data="my-project" class="select">
+				<a href="javascript:false"><i class="fa fa-paper-plane"></i>マイプロジェクト</a>
+			</li>
+			<li list-data="heart-project">
+				<a href="javascript:false"><i class="fa fa-heart-o"></i>気になる</a>
+			</li>
 		</ul>
-		<div class="projects_zone">
-			<p>not projects </p>
+		<div class="user_projects_contents">	
+
+				<div class="main-item-list my-project">
+				<% if @projects.empty? %>
+					<div class="projects_not_zone show-item">
+						<p>not projects</p>
+					</div>
+				<% end %>	
+	
+				<% @projects.each do |project| %>
+					<div class="item-space">
+						<div class="main-item">
+							<a class="img_link" href="#">
+								<%= image_tag "/project_images/#{project.image}" ,:size => '30x20'%>
+							</a>
+							<h3 class="item-title">
+								<%= link_to project.title, project_path(project.id) %>
+							</h3>
+							<p>
+								<i class="fa fa-check-square-o"></i><%= project.description %>
+							</p>
+							<p>
+								<i class="fa fa-user"></i><%= project.user.username %>
+							</p>
+							<p>
+								<i class="fa fa-tag"></i><%= what_tag(project) %>
+							</p>
+							<p class="hart">
+								<i class="fa fa-heart"></i><%= project.likes.count %>
+							</p>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<div class="main-item-list heart-project">
+				<% if @projects.empty? %>
+					<div class="projects_not_zone">
+						<p>not projects</p>
+					</div>
+				<% end %>
+
+				<% @projects.each do |project| %>
+					<div class="item-space">
+						<div class="main-item">
+							<a class="img_link" href="#">
+								<%= image_tag "sample.jpg" %>
+							</a>
+							<h3 class="item-title">
+								<%= link_to project.title, project_path(project.id) %>
+							</h3>
+							<p>
+								<i class="fa fa-check-square-o"></i><%= project.description %>
+							</p>
+							<p>
+								<i class="fa fa-user"></i><%= project.user.username %>
+							</p>
+							<p>
+								<i class="fa fa-tag"></i><%= what_tag(project) %>
+							</p>
+							<p class="hart">
+								<i class="fa fa-heart"></i><%= project.likes.count %>
+							</p>
+						</div>
+					</div>
+				<% end %>
+
+			</div>
 		</div>
 	</section>
 	<section class="footer">
@@ -94,7 +189,13 @@
 					<li><a href="#">カテゴリ検索</a></li>
 					<li><a href="#">ユーザーページ</a></li>
 					<li><a href="#">チャット</a></li>
-					<li><a href="#">ログイン</a></li>
+					<li>
+						<% if user_signed_in? %>
+        					<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      					<% else %>
+        					<%= link_to 'ログイン', new_user_session_path %>
+      					<% end %>
+					</li>
 				</ul>
 			</div>
 			<div class="twe-block">
@@ -110,19 +211,39 @@
 		</div>
 		<div class="clear"></div>
 	</section>
-	      <% if user_signed_in? %>
-        <strong><%= link_to current_user.username, user_path(current_user.id) %></strong>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'サインアップ', new_user_registration_path %>
-        <%= link_to 'ログイン', new_user_session_path %>
-      <% end %>
 
 
 <script type="text/javascript">
+/*
+function img_resize(){
+   	$('.main-item img ').each(function(){
+		img_width = $('.main-item').width();
+		img_height =  (img_width / 5) * 3 ;
+		$(this).css({height: img_height + 'px'});
+		console.log('width : ' + img_width + '  height : ' + img_height);
+   	});
+};
+
+$(window).load(function () {
+
+    img_resize();
+    $('.heart-project').css({display:'none'})
+
+    $(window).resize(function() {
+    	img_resize();
+	});
+});
+*/
+
 $(function(){
+
+	/* ------------------------------------------------- */ 
+    /* ------------------------------------------------- */ 
+    /* 					menu 	 						 */
+    /* ------------------------------------------------- */ 
+    /* ------------------------------------------------- */ 
 	$(window).scroll(function (){
-        var header_top = $(".fix-contents").offset().top;
+        var header_top = $(".fix-contents").offset().top; 
         if( header_top <= $(this).scrollTop() ){
         	$('.fix-contents').addClass('fix');
         }
@@ -130,7 +251,9 @@ $(function(){
         	$('.fix-contents').removeClass('fix');
         }
     });
+
 	var sp_menu = $('.sp-menu');
+
 	$('.fix-list.sp').on('click',function(){
 		if(!$(sp_menu).hasClass('show')){
 			$(sp_menu).addClass('show');
@@ -140,13 +263,13 @@ $(function(){
 			$('.fix-contents').removeClass('fix');
 		}
 	});
+
 	$('.sp-menu > ul > .close').on('click',function(){
 		$(sp_menu).removeClass('show');
 		$('.fix-contents').removeClass('fix');
 	});
-    $('.down-icon').on('click',function(){
-    	$("html,body").animate({scrollTop:$('.picup').offset().top},1300,'easeOutQuint');
-    });
+
+
     $('.drop-child').hover(
     	function(){
     		var targetEl = $(this).find('ul');
@@ -158,5 +281,89 @@ $(function(){
     		targetEl.css({'display':'none'});
     	}
     );
+
+    /* ------------------------------------------------- */ 
+    /* 					item grid						 */
+    /* ------------------------------------------------- */ 
+
+    // img contents
+
+
+	// tab contents
+
+	$('.my-project .item-space').addClass('show-item');
+
+	$('.user_projects ul li').on('click',function(){
+
+		$(this).siblings().removeClass('select');
+		$(this).addClass('select');
+
+		list_data = $(this).attr('list-data');
+
+		$('.' + list_data).siblings().find( '.item-space , .projects_not_zone' ).removeClass('show-item').onCSSTransitionEnd(function(){
+			
+			$('.' + list_data).siblings().css({display:'none'});
+			$('.' + list_data).css({display:'block'});
+			setTimeout(function(){
+				$('.' + list_data).find( '.item-space , .projects_not_zone' ).addClass('show-item');
+			},10);
+
+		});
+
+	});
+
+	// edit mode 
+
+	var edit_hide = $('.edit-hide');
+	var not_edit = $('.not-edit');
+	$('.edit').on('click',function(){
+		$(edit_hide).removeClass('edit-hide');
+		$(not_edit).addClass('edit-hide');
+
+		$('.show.edit').removeClass('show');
+		setTimeout(function(){
+			$('.edit').css({display:'none'});
+			$('.edit-mode').css({display:'block'});
+			setTimeout(function(){
+				$('.edit-mode').addClass('show');
+			},10);
+		},500);
+	});
+
+
+	$('.edit-cancel').on('click',function(){
+		$(edit_hide).addClass('edit-hide');
+		$(not_edit).removeClass('edit-hide');
+		$('.img-icon img').attr('src',now_icon_url);
+
+		$('.show.edit-mode').removeClass('show');
+		setTimeout(function(){
+			$('.edit-mode').css({display:'none'});
+			$('.edit').css({display:'block'});
+			setTimeout(function(){
+				$('.edit').addClass('show');
+			},10);
+		},500);
+	});
+
+
+	//icon pre 
+	var now_icon_url = $('.img-icon img').attr('src');
+
+ 	$('input[type=file]').change(function() {
+	    var file = $(this).prop('files')[0];
+
+    	if (! file.type.match('image.*')) {
+      		$(this).val('');
+      		return;
+    	}
+
+    	var file_reader = new FileReader();
+    	file_reader.onload = function() {
+      		$('.img-icon img').attr('src',file_reader.result);
+    	}
+    	file_reader.readAsDataURL(file);
+	});
+
 });
 </script>

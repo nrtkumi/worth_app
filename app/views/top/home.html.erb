@@ -1,10 +1,462 @@
-<%= form_tag :search_projects, method: :get do %>
-  <%= text_field_tag "q", params[:q] %>
-  <%= submit_tag "プロジェクト検索" %>
-<% end %>
+<%= stylesheet_link_tag "top", :media => "all" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<div class="sp-menu sp">
+		<ul>
+			<li><a href="#"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
+			<li><a href="#"><i class="fa fa-list"></i>ワード検索</a></li>
+			<li><a href="#"><i class="fa fa-asterisk"></i>カテゴリ検索</a></li>
+			<li>
+				<% if user_signed_in? %>
+					<%= link_to  user_path(current_user.id) do%>
+						<i class="fa fa-user"></i>ユーザーページ
+					<% end %>
+				<% else %>
+					<%= link_to  new_user_session_path do%>
+						<i class="fa fa-user"></i>ユーザーページ
+					<% end %>
+				<% end %>
+			</li>
+			<li><a href="#"><i class="fa fa-commenting-o"></i>チャット</a></li>
+			<li class="close"><a href="#"><i class="fa fa-times-circle"></i>閉じる</a></li>
+		</ul>
+	</div>
+	<section class="header">
+		<div class="header-contents">
+			<div class="fix-contents">
+				<h4>Worse</h4>
+				<!-- phone -->
+				<a class="fix-list sp" href="javascript:false()">
+					<i class="fa fa-bars sp-bar"></i>
+				</a>
+				<!-- phone -->
 
-<%= form_tag :category_projects, method: :get do %>
-  <%= select :p, :category, @options, include_blank: '選択してください' %>
-  <%= submit_tag "検索" %>
-<% end %>
-<h1>Top#home</h1>
+				<ul class="fix-list pc">
+					<li><a href="#"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
+					<li><a href="#"><i class="fa fa-search"></i>探す</a></li>
+					<li  class="drop-child">
+						<a href="#"><i class="fa fa-user"></i>ユーザー<i class="fa fa-caret-down"></i></a>
+						<ul class="drop-down">
+							<li><hr></li>
+							<li>
+								<% if user_signed_in? %>
+									<%= link_to 'マイページ', user_path(current_user.id) %>
+								<% else %>
+									<%= link_to 'マイページ', new_user_session_path %>
+								<% end %>
+							</li>
+							<li>
+								<% if user_signed_in? %>
+        							<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      							<% else %>
+        							<%= link_to 'ログイン', new_user_session_path %>
+      							<% end %>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#"><i class="fa fa-commenting-o"></i>チャット</a></li>
+				</ul>
+			</div>
+			<div class="title-box">
+				<h1 class="title">Worse</h1>
+				<p>
+					環境の異なった人間同士が出会い、<br>
+					思考が交わった時、<br>
+					新たな価値を生み出す
+				</p>
+				<a class="title-btn" data-hover="Worseについて" href="#"><span>V</span><span>i</span><span>e</span><span>w</span><span>　</span><span>c</span><span>o</span><span>n</span><span>t</span><span>e</span><span>n</span><span>t</span></a>
+			</div>
+			<p class="down-icon"><i class="fa fa-angle-down"></i></p>
+		</div>
+	</section>
+
+	<section class="search">
+		<h3><i class="fa fa-search"></i>プロジェクトを探す</h3>
+		<div class="search-form">
+			<p><input><a href="#">探す</a></p>
+		</div>
+				
+	</section>
+
+	<section class="main-item-list picup">
+	<h2 class="sec-title"><i class="fa fa-line-chart"></i>ピックアップ</h2>
+	<p class="sec-des">現在注目のプロジェクトたちです</p>
+		<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample4.jpg' %>
+				</a>
+				<h3 class="item-title">
+					jsエンジニア募集
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>Node.js Angular.jsがバリバリ書けるエンジニアを探しています
+				</p>
+				<p>
+					<i class="fa fa-user"></i>nagimaru
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>プログラミング
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>999
+				</p>
+			</div>
+		</div>
+
+		<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample2.jpg' %>
+				</a>
+				<h3 class="item-title">
+					Erlangエンジニア及びデザイナー募集
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>オォン
+				</p>
+				<p>
+					<i class="fa fa-user"></i>nagimaru
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>プログラミング
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>999
+				</p>
+			</div>
+		</div>
+
+		<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample.jpg' %>
+				</a>
+				<h3 class="item-title">
+					紙をください
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>トイレのペーパーが切れて困っています。1Fの男子トイレまでお願いします。
+				</p>
+				<p>
+					<i class="fa fa-user"></i>学生A
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>トイレ
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>0
+				</p>
+			</div>
+		</div>
+
+		<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample3.jpg' %>
+				</a>
+				<h3 class="item-title">
+					jsエンジニア募集
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>Node.js Angular.jsがバリバリ書けるエンジニアを探しています
+				</p>
+				<p>
+					<i class="fa fa-user"></i>nagimaru
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>プログラミング
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>999
+				</p>
+			</div>
+		</div>
+		<div class="viewmore">
+			<a href="#">
+				<p>もっと見る<i class="fa fa-arrow-right"></i></p>
+			</a>
+		</div>
+
+		
+	</section>
+<section class="main-item-list new">
+	<h2 class="sec-title"><i class="fa fa-paw"></i>新着プロジェクト</h2>
+	<p class="sec-des">最近掲載されたプロジェクトたちです</p>
+				<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample4.jpg' %>
+				</a>
+				<h3 class="item-title">
+					jsエンジニア募集
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>Node.js Angular.jsがバリバリ書けるエンジニアを探しています
+				</p>
+				<p>
+					<i class="fa fa-user"></i>nagimaru
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>プログラミング
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>999
+				</p>
+			</div>
+		</div>
+
+		<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample2.jpg' %>
+				</a>
+				<h3 class="item-title">
+					Erlangエンジニア及びデザイナー募集
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>オォン
+				</p>
+				<p>
+					<i class="fa fa-user"></i>nagimaru
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>プログラミング
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>999
+				</p>
+			</div>
+		</div>
+
+		<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample.jpg' %>
+				</a>
+				<h3 class="item-title">
+					紙をください
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>トイレのペーパーが切れて困っています。1Fの男子トイレまでお願いします。
+				</p>
+				<p>
+					<i class="fa fa-user"></i>学生A
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>トイレ
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>0
+				</p>
+			</div>
+		</div>
+
+		<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample3.jpg' %>
+				</a>
+				<h3 class="item-title">
+					jsエンジニア募集
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>Node.js Angular.jsがバリバリ書けるエンジニアを探しています
+				</p>
+				<p>
+					<i class="fa fa-user"></i>nagimaru
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>プログラミング
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>999
+				</p>
+			</div>
+		</div>
+
+		
+	</section>
+<section class="main-item-list succes">
+	<h2 class="sec-title"><i class="fa fa-paper-plane"></i>マッチング成功</h2>
+	<p class="sec-des">最近マッチングが成功したプロジェクトです</p>
+		<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample4.jpg' %>
+				</a>
+				<h3 class="item-title">
+					jsエンジニア募集
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>Node.js Angular.jsがバリバリ書けるエンジニアを探しています
+				</p>
+				<p>
+					<i class="fa fa-user"></i>nagimaru
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>プログラミング
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>999
+				</p>
+			</div>
+		</div>
+
+		<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample2.jpg' %>
+				</a>
+				<h3 class="item-title">
+					Erlangエンジニア及びデザイナー募集
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>オォン
+				</p>
+				<p>
+					<i class="fa fa-user"></i>nagimaru
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>プログラミング
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>999
+				</p>
+			</div>
+		</div>
+
+		<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample.jpg' %>
+				</a>
+				<h3 class="item-title">
+					紙をください
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>トイレのペーパーが切れて困っています。1Fの男子トイレまでお願いします。
+				</p>
+				<p>
+					<i class="fa fa-user"></i>学生A
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>トイレ
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>0
+				</p>
+			</div>
+		</div>
+
+		<div class="item-space">
+			<div class="main-item">
+				<a href="#">
+					<%= image_tag 'sample3.jpg' %>
+				</a>
+				<h3 class="item-title">
+					jsエンジニア募集
+				</h3>
+				<p>
+					<i class="fa fa-check-square-o"></i>Node.js Angular.jsがバリバリ書けるエンジニアを探しています
+				</p>
+				<p>
+					<i class="fa fa-user"></i>nagimaru
+				</p>
+				<p>
+					<i class="fa fa-tag"></i>プログラミング
+				</p>
+				<p class="hart">
+					<i class="fa fa-heart"></i>999
+				</p>
+			</div>
+		</div>
+		<div class="viewmore">
+			<a href="#">
+				<p>もっと見る<i class="fa fa-arrow-right"></i></p>
+			</a>
+		</div>
+
+		
+	</section>
+	<section class="footer">
+		<div class="first">
+			<ul>
+				<li><a href="#">プロジェクトを作る</a></li>
+				<li><a href="#">Worseについて</a></li>
+			</ul>
+		</div>
+		<div class="second">
+			<div class="one-block">
+				<h5>Menu</h5>
+				<ul>
+					<li><a href="#">プロジェクトを作る</a></li>
+					<li><a href="#">ワード検索</a></li>
+					<li><a href="#">カテゴリ検索</a></li>
+					<li><a href="#">ユーザーページ</a></li>
+					<li><a href="#">チャット</a></li>
+					<li><a href="#">ログイン</a></li>
+				</ul>
+			</div>
+			<div class="twe-block">
+				<h5>developer</h5>
+				<ul>
+					<li><a href="#">@nyaratakumi</a></li>
+					<li><a href="#">@_Ghostrick_</a></li>
+					<li><a href="#">@Tobira_xiexie</a></li>
+				</ul>
+			</div>
+			<div class="three-block">
+			</div>
+		</div>
+		<div class="clear"></div>
+	</section>
+<script>
+$(function(){
+
+	$(window).scroll(function (){
+        $('.item-space').each(function(){
+            if ($(window).scrollTop() > $(this).offset().top - $(window).height()){
+                $(this).addClass('show-item');
+                $(this).siblings('.item-space').addClass('show-item');
+            }
+        });
+        var header_top = $(".fix-contents").offset().top; 
+        if( header_top <= $(this).scrollTop() ){
+        	$('.fix-contents').addClass('fix');
+        }
+        if(  $(this).scrollTop() == 0 )  {
+        	$('.fix-contents').removeClass('fix');
+        }
+    });
+
+	var sp_menu = $('.sp-menu');
+
+	$('.fix-list.sp').on('click',function(){
+		if(!$(sp_menu).hasClass('show')){
+			$(sp_menu).addClass('show');
+		} else {
+			$(sp_menu).removeClass('show');
+		}
+	});
+
+	$('.sp-menu > ul > .close').on('click',function(){
+		$(sp_menu).removeClass('show');
+	});
+
+    $('.down-icon').on('click',function(){
+    	$("html,body").animate({scrollTop:$('.picup').offset().top},1300,'easeOutQuint');
+    });
+
+    $('.drop-child').hover(
+    	function(){
+    		var targetEl = $(this).find('ul');
+    		targetEl.css({display:'block'});
+			targetEl.find('li').animate({top:'0',opacity:'1'},300);
+    	},function(){
+    		var targetEl = $(this).find('ul');
+       		targetEl.find('li').css({top:'-10px',opacity:'0'});
+    		targetEl.css({'display':'none'});
+    	}
+    );
+});
+	</script>
