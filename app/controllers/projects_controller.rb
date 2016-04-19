@@ -55,12 +55,14 @@ class ProjectsController < ApplicationController
   def search
     @options = ["ビジネス", "社会貢献", "音楽", "アート", "イベント", "プロダクト", "アプリ", "ゲーム", "フード", "グローバル", "ファッション", "ムービー", "本"]
     @projects = Project.search(params[:q])
+    @result = params[:q]
     render :index
   end
 
   def category
     @options = ["ビジネス", "社会貢献", "音楽", "アート", "イベント", "プロダクト", "アプリ", "ゲーム", "フード", "グローバル", "ファッション", "ムービー", "本"]
     @projects = Project.category(params[:p][:category])
+    @result = params[:p][:category]
     render :index
   end
 
