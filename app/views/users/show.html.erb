@@ -139,36 +139,11 @@
 				<% end %>
 			</div>
 			<div class="main-item-list heart-project">
-				<% if @projects.empty? %>
+
 					<div class="projects_not_zone">
 						<p>not projects</p>
 					</div>
-				<% end %>
 
-				<% @projects.each do |project| %>
-					<div class="item-space">
-						<div class="main-item">
-							<a class="img_link" href="#">
-								<%= image_tag "sample.jpg" %>
-							</a>
-							<h3 class="item-title">
-								<%= link_to project.title, project_path(project.id) %>
-							</h3>
-							<p>
-								<i class="fa fa-check-square-o"></i><%= project.description %>
-							</p>
-							<p>
-								<i class="fa fa-user"></i><%= project.user.username %>
-							</p>
-							<p>
-								<i class="fa fa-tag"></i><%= what_tag(project) %>
-							</p>
-							<p class="hart">
-								<i class="fa fa-heart"></i><%= project.likes.count %>
-							</p>
-						</div>
-					</div>
-				<% end %>
 
 			</div>
 		</div>
@@ -214,26 +189,39 @@
 
 
 <script type="text/javascript">
-/*
+function ThisPhone(){
+	var Agent = navigator.userAgent;
+    if(Agent.indexOf('iPhone') > 0 || Agent.indexOf('iPod') > 0 || Agent.indexOf('Android') > 0 && Agent.indexOf('Mobile') > 0){
+        return true;
+    } else if (Agent.indexOf('iPad') > 0 || Agent.indexOf('Android') > 0){
+        return true;
+    } else {
+        return false;
+    }
+};
+
+
 function img_resize(){
    	$('.main-item img ').each(function(){
 		img_width = $('.main-item').width();
 		img_height =  (img_width / 5) * 3 ;
 		$(this).css({height: img_height + 'px'});
-		console.log('width : ' + img_width + '  height : ' + img_height);
    	});
 };
 
 $(window).load(function () {
-
     img_resize();
-    $('.heart-project').css({display:'none'})
+    
+    $('.heart-project').css({display:'none'});
 
-    $(window).resize(function() {
-    	img_resize();
-	});
+	if(ThisPhone() == false){
+    	$(window).on('resize',function() {
+    		img_resize();
+		});
+	}
+
 });
-*/
+
 
 $(function(){
 

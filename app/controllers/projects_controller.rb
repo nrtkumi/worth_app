@@ -56,6 +56,7 @@ class ProjectsController < ApplicationController
     @options = ["ビジネス", "社会貢献", "音楽", "アート", "イベント", "プロダクト", "アプリ", "ゲーム", "フード", "グローバル", "ファッション", "ムービー", "本"]
     @projects = Project.search(params[:q])
     @result = params[:q]
+    @search_mode = 'keyword'
     render :index
   end
 
@@ -63,6 +64,7 @@ class ProjectsController < ApplicationController
     @options = ["ビジネス", "社会貢献", "音楽", "アート", "イベント", "プロダクト", "アプリ", "ゲーム", "フード", "グローバル", "ファッション", "ムービー", "本"]
     @projects = Project.category(params[:p][:category])
     @result = params[:p][:category]
+    @search_mode = 'category'
     render :index
   end
 

@@ -1,10 +1,24 @@
-<!-- index.html.erbのrenderの中身 -->
-<li><%= link_to project.title, project_path(project.id) %></li>
-<%= project.likes.count %>
-<% if user_signed_in? %>
-  <% if current_user.likes.find_by(project_id: project.id) %>
-    <%= link_to 'いいね！を取り消す', unlike_path(project.id), method: :delete %>
-  <% else %>
-    <%= link_to 'いいね！', like_path(project.id), method: :post %>
-  <% end %>
-<% end %>
+
+
+					<div class="item-space">
+						<div class="main-item">
+							<a class="img_link" href="#">
+								<%= image_tag "/project_images/#{project.image}" ,:size => '30x20'%>
+							</a>
+							<h3 class="item-title">
+								<%= link_to project.title, project_path(project.id) %>
+							</h3>
+							<p>
+								<i class="fa fa-check-square-o"></i><%= project.description %>
+							</p>
+							<p>
+								<i class="fa fa-user"></i><%= project.user.username %>
+							</p>
+							<p>
+								<i class="fa fa-tag"></i><%= what_tag(project) %>
+							</p>
+							<p class="hart">
+								<i class="fa fa-heart"></i><%= project.likes.count %>
+							</p>
+						</div>
+					</div>
