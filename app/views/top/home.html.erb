@@ -411,6 +411,39 @@
 		<div class="clear"></div>
 	</section>
 <script>
+function ThisPhone(){
+	var Agent = navigator.userAgent;
+    if(Agent.indexOf('iPhone') > 0 || Agent.indexOf('iPod') > 0 || Agent.indexOf('Android') > 0 && Agent.indexOf('Mobile') > 0){
+        return true;
+    } else if (Agent.indexOf('iPad') > 0 || Agent.indexOf('Android') > 0){
+        return true;
+    } else {
+        return false;
+    }
+};
+
+
+function img_resize(){
+   	$('.main-item img ').each(function(){
+		img_width = $('.main-item').width();
+		img_height =  (img_width / 5) * 3 ;
+		$(this).css({height: img_height + 'px'});
+   	});
+};
+
+$(window).load(function () {
+    img_resize();
+    
+    $('.heart-project').css({display:'none'});
+
+	if(ThisPhone() == false){
+    	$(window).on('resize',function() {
+    		img_resize();
+		});
+	}
+
+});
+
 $(function(){
 
 	$(window).scroll(function (){
