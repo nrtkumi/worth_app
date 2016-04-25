@@ -106,7 +106,7 @@
 		</ul>
 		<div class="user_projects_contents">	
 
-				<div class="main-item-list my-project">
+			<div class="main-item-list my-project">
 				<% if @projects.empty? %>
 					<div class="projects_not_zone show-item">
 						<p>not projects</p>
@@ -139,12 +139,37 @@
 				<% end %>
 			</div>
 			<div class="main-item-list heart-project">
-
-					<div class="projects_not_zone">
+				<% if @projects.empty? %>
+					<div class="projects_not_zone show-item">
 						<p>not projects</p>
 					</div>
-
-
+				<% end %>	
+	
+				<% @projects.each do |project| %>
+					<div class="item-space">
+						<div class="main-item">
+							<a class="img_link" href="#">
+								<%= image_tag "/project_images/#{project.image}" ,:size => '30x20'%>
+							</a>
+							<h3 class="item-title">
+								<%= link_to project.title, project_path(project.id) %>
+							</h3>
+							<p>
+								<i class="fa fa-check-square-o"></i><%= project.description %>
+							</p>
+							<p>
+								<i class="fa fa-user"></i><%= project.user.username %>
+							</p>
+							<p>
+								<i class="fa fa-tag"></i><%= what_tag(project) %>
+							</p>
+							<p class="hart">
+								<i class="fa fa-heart"></i><%= project.likes.count %>
+							</p>
+						</div>
+					</div>
+				<% end %>
+			</div>
 			</div>
 		</div>
 	</section>
