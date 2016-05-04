@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   has_many :likes
   has_many :like_users, through: :likes, source: :user
+  has_one :room ,dependent: :destroy
 
   validates :title, presence: true
   validates :description, presence: true

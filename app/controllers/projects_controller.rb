@@ -24,6 +24,10 @@ class ProjectsController < ApplicationController
     @project.set_project_image(file)
 
     if @project.save
+      room = Room.new
+      room.channel = SecureRandom.urlsafe_base64
+      room.project_id = @project.id
+      room.save
       redirect_to @project, notice: '新規プロジェクトを募集開始しました'
     else
       render :new
@@ -66,6 +70,11 @@ class ProjectsController < ApplicationController
     @result = params[:p][:category]
     @search_mode = 'category'
     render :index
+  end
+
+  def chat
+    @room = Room.find_by(project_id: params[:id])
+    @owner = @room.owner
   end
 
   private

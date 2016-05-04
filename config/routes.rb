@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       get :search
       get :category
     end
+    member do
+      get :chat
+    end
   end
   post 'like/:project_id' => 'likes#like', as: 'like'
   delete 'unlike/:project_id' => 'likes#unlike', as: 'unlike'
