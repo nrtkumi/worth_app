@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406034606) do
+ActiveRecord::Schema.define(version: 20160504010700) do
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 20160406034606) do
     t.integer  "movie",       default: 0
     t.integer  "book",        default: 0
     t.text     "caption"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "name"
+    t.string   "channel"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
