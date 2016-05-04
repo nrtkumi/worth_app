@@ -1,3 +1,34 @@
-<h1>Yeah!!!</h1>
-<%= @room.project.title %>
+<h1><%= @room.project.title %></h1>
 <%= @owner.username %>
+
+<form id="form">
+  <input id="text_input">
+  <input type="submit">
+</form>
+
+<ul id="msg_box">
+</ul>
+
+<script>
+  $(document).ready(function(e) {
+    var dispatcher = new WebSocketRails('localhost:3000/websocket');
+    var channel = dispatcher.subscribe('<%= @room.channel %>');
+    console.log(dispatcher);
+
+    var form = document.getElementById("form");
+    var text_input = document.getElementById("text_input");
+    var msg_box = document.getElementById("msg_box");
+
+    form.onsubmit = function(e){
+        dispatcher.trigger("send_message", { msg: text_input.value, ch: '<%= @room.channel %>' });
+        e.preventDefault();
+        console.log("send!");
+      }
+
+    channel.bind('post', function(data) {
+      var li = document.createElement("li");
+      li.textContent = data.msg + ":" + data.user.username;
+      msg_box.appendChild(li);
+    });
+  });
+</script>
