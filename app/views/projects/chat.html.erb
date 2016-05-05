@@ -7,6 +7,9 @@
 </form>
 
 <ul id="msg_box">
+  <% @messages.each do |message| %>
+    <li><%= message.body %>:<%= message.user.username %>:<%= message.created_at %></li>
+  <% end %>
 </ul>
 
 <script>

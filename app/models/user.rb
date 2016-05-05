@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :likes
   has_many :like_projects, through: :likes, source: :project
+  has_many :messages
 
   validates :username, presence: true
 

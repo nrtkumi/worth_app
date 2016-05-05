@@ -75,6 +75,7 @@ class ProjectsController < ApplicationController
   def chat
     @room = Room.find_by(project_id: params[:id])
     @owner = @room.owner
+    @messages = Message.where(room_id: @room.id)
   end
 
   private
