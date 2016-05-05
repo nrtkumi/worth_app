@@ -16,7 +16,6 @@
   $(document).ready(function(e) {
     var dispatcher = new WebSocketRails('localhost:3000/websocket');
     var channel = dispatcher.subscribe('<%= @room.channel %>');
-    console.log(dispatcher);
 
     var form = document.getElementById("form");
     var text_input = document.getElementById("text_input");
@@ -25,7 +24,6 @@
     form.onsubmit = function(e){
         dispatcher.trigger("send_message", { msg: text_input.value, ch: '<%= @room.channel %>' });
         e.preventDefault();
-        console.log("send!");
       }
 
     channel.bind('post', function(data) {
