@@ -9,7 +9,9 @@
 <ul id="msg_box">
   <% @messages.each do |message| %>
     <li><%= message.body %>:<%= message.user.username %>:<%= message.created_at %></li>
+    <!-- ログを出力(本文と送信者名と送信時間) -->
   <% end %>
+  <!-- ここにsocket通信で受け取ったmessageを出力 -->
 </ul>
 
 <script>
@@ -22,11 +24,14 @@
     var msg_box = document.getElementById("msg_box");
 
     form.onsubmit = function(e){
+      // submitされたときsend_messageイベントを発火してサーバにメッセージとチャネル名を送信
         dispatcher.trigger("send_message", { msg: text_input.value, ch: '<%= @room.channel %>' });
         e.preventDefault();
       }
 
     channel.bind('post', function(data) {
+      // 対応するchannelのpostイベントを監視し発火したらサーバから受け取ったデータを出力
+      // data = { msg: "something", ch: "something", user: something }
       var li = document.createElement("li");
       li.textContent = data.msg + ":" + data.user.username;
       msg_box.appendChild(li);
