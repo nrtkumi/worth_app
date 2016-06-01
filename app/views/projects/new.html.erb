@@ -1,4 +1,4 @@
-<!-- プロジェクト新規募集 -->
+<!-- プロジェクト新規募集 
 <%= form_for @project do |f| %>
   <% if @project.errors.any? %>
     <p><%= @project.errors.count %>件のエラーがあります。</p>
@@ -9,27 +9,12 @@
     </ul>
   <% end %>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
   <%= f.label :image %>
   <%= f.file_field :image %>
   <%= f.label :description %>
   <%= f.text_area :description %>
   キャプション(50文字以内)<%= f.text_area :caption %>
 
-  <%= f.check_box :business %>ビジネス・スタートアップ
-  <%= f.check_box :social %>社会貢献
-  <%= f.check_box :music %>音楽
-  <%= f.check_box :art %>アート
-  <%= f.check_box :event %>イベント
-  <%= f.check_box :product %>プロダクト
-  <%= f.check_box :app %>アプリ
-  <%= f.check_box :game %>ゲーム
-  <%= f.check_box :food %>フード
-  <%= f.check_box :global %>グローバル
-  <%= f.check_box :fashion %>ファッション
-  <%= f.check_box :movie %>ムービー
-  <%= f.check_box :book %>本
 
 
   <%= f.submit '募集' %>
@@ -41,25 +26,106 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <%= javascript_include_tag 'jquery.oncssanimationend', 'data-turbolinks-track' => true %>
 
-  <section class="edit">
+    <p class="top-msg">start projects</p>
 
-    <div class="title-create"></div>
+    <%= form_for @project do |f| %>
+    <section class="edit">
 
-    <div class="tag-create"></div>
+        <div class="title-create">
+            <h3><i class="fa fa-cube" aria-hidden="true"></i>プロジェクトタイトル</h3>
+            <%= f.text_field :title ,placeholder:"キーワード"%>
+            <p>叶えたい事を入力してね!!</p>
 
-    <div class="image-create"></div>
+            <div class="next-btn">
+                <a href="javascript:nextDiv()" class="next-btn"><span>Next Step</span></a>
+            </div>
 
-    <div class="cap-create"></div>
+        </div>
 
-    <div class="text-create"></div>
+        <div class="tag-create">
+           <h3><i class="fa fa-tag" aria-hidden="true"></i>タグ選択</h3>
+                <div class="select-tag">
+                    <!--
+                    <%= f.check_box :business %>ビジネス・スタートアップ
+                    <%= f.check_box :social %>社会貢献
+                    <%= f.check_box :music %>音楽
+                    <%= f.check_box :art %>アート
+                    <%= f.check_box :event %>イベント
+                    <%= f.check_box :product %>プロダクト
+                    <%= f.check_box :app %>アプリ
+                    <%= f.check_box :game %>ゲーム
+                    <%= f.check_box :food %>フード
+                    <%= f.check_box :global %>グローバル
+                    <%= f.check_box :fashion %>ファッション
+                    <%= f.check_box :movie %>ムービー
+                    <%= f.check_box :book %>本
+                    -->
 
-  </section>
+                </div>
+        </div>
 
-  <section class="preview">
-    
-  </section>
+        <div class="image-create">
+            <p class="sampletext">画像アップロード画面</p>
+        </div>
 
-  <section class="tips">
-    
-  </section>
+        <div class="cap-create">
+            <p class="sampletext">キャプション入力画面</p>
+        </div>
+
+        <div class="text-create">
+            <p class="sampletext">メインテキスト入力画面</p>
+        </div>
+
+    </section>
+    <% end %>
+
+    <section class="preview">
+  
+    </section>
+
+    <section class="tips">
+  
+    </section>
+
+    <div class="cancel"></div>
+
+
+    <script type="text/javascript">
+        
+        // ---------------------
+        // full-screen animation 
+        // ---------------------
+
+        var currentDiv = 0;
+        var maxDiv = $( '.edit > div' ).length;
+
+        var nextDiv = function() {
+
+            if(currentDiv == maxDiv - 1) return false;
+            $( '.edit > div' ).eq(currentDiv).addClass( 'hide' );
+            $( '.edit > div' ).eq(currentDiv + 1).addClass( 'show' );
+            currentDiv++;
+
+        }
+
+        var prevDiv = function(){
+
+            if(currentDiv == 0) return false;
+            $( '.edit > div' ).eq(currentDiv).removeClass( 'show' );
+            $( '.edit > div' ).eq(currentDiv - 1).removeClass( 'hide' );
+            $( '.edit > div' ).eq(currentDiv - 1).addClass( 'show' );
+            currentDiv--;
+
+        }
+
+        setTimeout(function(){
+            $( '.top-msg' ).addClass( 'remove-msg' );
+        },4500);
+        setTimeout(function(){
+            $( '.edit > div' ).eq(currentDiv).addClass( 'show' );
+        },1);
+
+
+
+    </script>
 

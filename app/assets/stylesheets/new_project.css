@@ -1,0 +1,180 @@
+@font-face {
+	font-family: 'hosofont';
+	src: url('03SmartFontUI.otf'); 
+}
+a {
+	text-decoration: none;
+}
+* {
+	margin: 0;
+}
+body, html {
+	width: 100%;
+	height: 100%;
+	background: #555;
+	overflow: hidden;
+}
+
+.top-msg {
+	font-size: 1.25em;
+	text-align: center;
+	color: white;
+	font-family: 'hosofont';
+	position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    animation:blink 1s ease-in-out infinite alternate;
+    transition: all .5s;
+}
+.remove-msg {
+	display: none;
+}
+
+@keyframes blink{
+	0% {opacity:0;}
+	100% {opacity:.8;}
+}
+
+section,
+.edit > div {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.edit > div,
+.preview,
+.tips {
+	background: #FCFEFF;
+}
+
+/* current or back */
+/*    animation    */
+
+
+.edit > div,
+.preview,
+.tips { 
+	text-align: center; /* sample */
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: all .75s;
+	z-index: 0;
+	opacity: 1;
+	transform: scale(1) translateY(100%);
+}
+
+/* show */
+.edit > div.show,
+.preview.show,
+.tips.show { 
+	z-index: 100;
+	opacity: 1;
+	transform: scale(1) translateY(0);
+}
+
+/* hide */
+.edit > div.hide,
+.preview.hide,
+.tips.hide { 
+	z-index: 0;
+	opacity: 0;
+	transform: scale(0) translateY(0);
+}
+
+/*   contents   */
+
+.sampletext {
+	font-size: 1.5em;
+	color: #999;
+	position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.next-btn {
+	margin-top: 5em;
+}
+.next-btn > a {
+	position: relative;
+	font-size: 1.3em;
+	padding: .75em 1.25em;
+	text-decoration: none;
+	border: solid 1px #6495ED;
+}
+.next-btn > a > span {
+	z-index: 999;
+	color:#6495ED;
+	position: relative;
+	transition: all .5s;
+}
+.next-btn > a:before {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 0%;
+	background: #6495ED;
+	content: "";
+	z-index: 0!important;
+	transition: all .5s;
+}
+
+.next-btn:hover > a > span {
+	color: white!important;
+}
+.next-btn:hover > a:before {
+	height: 100%;
+}
+
+.edit > div {
+	overflow: scroll;
+	font-family: 'hosofont';
+}
+
+.edit > .title-create > h3,
+.edit > .tag-create > h3{
+	color: #93B5F2;
+	font-size: 1.75em;
+	margin-top: 5em;
+}
+.edit > div > h3 i {
+	font-size: 110%;
+	margin-right: .25em;
+}
+.edit > .title-create input {
+	font-family: 'hosofont';
+	position: relative;
+    -webkit-appearance: none;
+    border-radius: 0px;
+    outline: none;
+    border: none;
+    background: none;
+    width: 15em;
+    max-width: 80%;
+    margin: 2em auto;
+    border-bottom: solid 2px rgba(0,0,0,0.25);
+    font-size: 1.3em;
+    padding: 0.5em;
+    color: #777;
+    transition: all .3s;
+}
+.edit > .title-create input:focus {
+	border-bottom: solid 2px rgba(100,149,237,0.65);
+}
+.edit > .title-create > p {
+	color: #555;
+	font-size: 1em;
+}
+
+/* tag */
+
+.edit > .tag-create > .select-tag > input {
+	
+}
+
+
+
