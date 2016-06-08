@@ -27,7 +27,7 @@ body, html {
     transition: all .5s;
 }
 .remove-msg {
-	display: none;
+	display: none!important;
 }
 
 @keyframes blink{
@@ -54,9 +54,7 @@ section,
 /*    animation    */
 
 
-.edit > div,
-.preview,
-.tips { 
+.edit > div { 
 	text-align: center; /* sample */
 	position: absolute;
 	top: 0;
@@ -67,22 +65,66 @@ section,
 	transform: scale(1) translateY(100%);
 }
 
+
 /* show */
-.edit > div.show,
-.preview.show,
-.tips.show { 
+.edit > div.show{ 
 	z-index: 100;
 	opacity: 1;
 	transform: scale(1) translateY(0);
 }
 
+
+
 /* hide */
-.edit > div.hide,
-.preview.hide,
-.tips.hide { 
+.edit > div.hide { 
 	z-index: 0;
 	opacity: 0;
 	transform: scale(0) translateY(0);
+}
+
+/* tip & preview */
+
+.preview,
+.tips { 
+	text-align: center; /* sample */
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: all .5s;
+	z-index: 0;
+	transform: scale(1) translateY(-100%);
+}
+
+.preview.show,
+.tips.show { 
+	z-index: 1000;
+	transform: scale(1) translateY(0);
+}
+
+.edit {
+	transform: scale(1);
+	transition: all .6s;
+}
+.edit.another-mode {
+	transform: scale(0.7)!important;
+
+}
+
+.preview-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: auto;
+	color: white;
+	background: #93B5F2;
+}
+.preview-btn a {
+	color: white;
+	display: block;
+	padding:1em 2.5em;
+}
+.preview-btn a i {
+	margin-left: .25em;
 }
 
 /*   contents   */
@@ -95,8 +137,19 @@ section,
     transform: translateY(-50%);
 }
 
+.alert-msg {
+	color: red!important;
+	opacity: 0;
+	transition: all .5s;
+}
+.alert-msg.show-msg {
+	opacity: 1;
+}
+
 .next-btn {
-	margin-top: 5em;
+	margin-top: 4em;
+	margin-bottom: 2em;
+	clear: both;
 }
 .next-btn > a {
 	position: relative;
@@ -135,8 +188,8 @@ section,
 	font-family: 'hosofont';
 }
 
-.edit > .title-create > h3,
-.edit > .tag-create > h3{
+
+.edit > div > h3{
 	color: #93B5F2;
 	font-size: 1.75em;
 	margin-top: 5em;
@@ -145,6 +198,10 @@ section,
 	font-size: 110%;
 	margin-right: .25em;
 }
+.edit > .text-create > h3 {
+	margin-top: 2.5em;
+}
+
 .edit > .title-create input {
 	font-family: 'hosofont';
 	position: relative;
@@ -165,16 +222,100 @@ section,
 .edit > .title-create input:focus {
 	border-bottom: solid 2px rgba(100,149,237,0.65);
 }
-.edit > .title-create > p {
+.edit > .title-create > p,
+.edit > .cap-create > p,
+.edit > .text-create > p {
 	color: #555;
 	font-size: 1em;
 }
-
-/* tag */
-
-.edit > .tag-create > .select-tag > input {
-	
+.edit > .cap-create > p,
+ .edit > .text-create > p{
+	margin-top: 1em;
 }
 
+/* tag */
+.edit > .tag-create > .select-base {
+	display: none;
+}
+.edit > .tag-create > .select-fake {
 
+	width: 50%;
+	margin: auto;
+	padding: 2em;
+}
+.edit > .tag-create > .select-fake > div {
+	width: 50%;
+	float: left;
+	text-align: center;
+	padding: .5em 0;
+}
+.edit > .tag-create > .select-fake a {
+	color: #555;
+	font-size: 1.25em;
+	transition: all .25s;
+}
+.edit > .tag-create > .select-fake a i:nth-child(2){
+	display: none;
+}
 
+.checked {
+	color: #93B5F2!important;
+}
+
+/* cap */
+.edit > .cap-create textarea {
+	font-family: 'hosofont';
+	position: relative;
+    -webkit-appearance: none;
+    border-radius: 0px;
+    outline: none;
+    border: none;
+    background: none;
+    width: 15em;
+    max-width: 80%;
+    margin: 2em auto;
+    border-bottom: solid 2px rgba(0,0,0,0.25);
+    font-size: 1.3em;
+    padding: 0.5em;
+    color: #777;
+    transition: all .3s;
+}
+.edit > .cap-create textarea:focus {
+	border-bottom: solid 2px rgba(100,149,237,0.65);
+}
+
+/* text */
+
+.edit > .text-create  textarea {
+	width: 70%;
+	margin:auto;
+    outline: none;
+    border: none;
+
+}
+
+/* tips & preview */
+ 
+.preview > h1,
+.tips > h1 {
+	text-align: left;
+	padding: .5em;
+	font-size: 1.25em;
+	font-family: 'hosofont';
+	color: #777;
+}
+
+.preview > .preview-wrapper{
+	text-align: left;
+	margin-top: 5em;
+	position: relative;
+	background: white;
+	width: 60%;
+	height: 10em;
+	margin:3em auto 0;
+	padding: 1em;
+	border: solid 1px rgba(0,0,0,0.05);
+	border-top: solid 3px #93B5F2;
+	text-align: center;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.05);
+}

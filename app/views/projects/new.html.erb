@@ -23,8 +23,11 @@
 <!-- プロジェクト作成 -->
 
   <%= stylesheet_link_tag "new_project", :media => "all" %>
+  <%= stylesheet_link_tag "jquery-linedtextarea", :media => "all" %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <%= javascript_include_tag 'jquery.oncssanimationend', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'jquery-linedtextarea', 'data-turbolinks-track' => true %>
+
 
     <p class="top-msg">start projects</p>
 
@@ -32,6 +35,11 @@
     <section class="edit">
 
         <div class="title-create">
+            <div class="preview-btn">
+                <a href="javascript:preview('open')">
+                    preview<i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
             <h3><i class="fa fa-cube" aria-hidden="true"></i>プロジェクトタイトル</h3>
             <%= f.text_field :title ,placeholder:"キーワード"%>
             <p>叶えたい事を入力してね!!</p>
@@ -43,9 +51,13 @@
         </div>
 
         <div class="tag-create">
+            <div class="preview-btn">
+                <a href="javascript:preview('open')">
+                    preview<i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
            <h3><i class="fa fa-tag" aria-hidden="true"></i>タグ選択</h3>
-                <div class="select-tag">
-                    <!--
+                <div class="select-base">
                     <%= f.check_box :business %>ビジネス・スタートアップ
                     <%= f.check_box :social %>社会貢献
                     <%= f.check_box :music %>音楽
@@ -59,32 +71,116 @@
                     <%= f.check_box :fashion %>ファッション
                     <%= f.check_box :movie %>ムービー
                     <%= f.check_box :book %>本
-                    -->
-
+                </div>
+                <div class="select-fake">
+                    <div><a href="javascript:false" tag="business">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>ビジネス
+                    </a></div>
+                    <div><a href="javascript:false" tag="social">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>社会貢献
+                    </a></div>
+                    <div><a href="javascript:false" tag="music">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>音楽
+                    </a></div>
+                    <div><a href="javascript:false" tag="art">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>アート
+                    </a></div>
+                   <div><a href="javascript:false" tag="event">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>イベント
+                    </a></div>
+                    <div><a href="javascript:false" tag="product">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>プロダクト
+                    </a></div>
+                    <div><a href="javascript:false" tag="app">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>アプリ
+                    </a></div>
+                    <div><a href="javascript:false" tag="game">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>ゲーム
+                    </a></div>
+                    <div><a href="javascript:false" tag="food">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>フード
+                    </a></div>
+                    <div><a href="javascript:false" tag="global">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>グローバル
+                    </a></div>
+                    <div><a href="javascript:false" tag="fashion">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>ファッション
+                    </a></div>
+                    <div><a href="javascript:false" tag="movie">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>ムービー
+                    </a></div>
+                    <div><a href="javascript:false" tag="book">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>本
+                    </a></div>
+                </div>
+                <div class="next-btn">
+                    <a href="javascript:nextDiv()" class="next-btn"><span>Next Step</span></a>
                 </div>
         </div>
 
         <div class="image-create">
-            <p class="sampletext">画像アップロード画面</p>
+            <div class="preview-btn">
+                <a href="javascript:preview('open')">
+                    preview<i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+            <h3><i class="fa fa-tag" aria-hidden="true"></i>画像アップロード</h3>
+            <div class="up-zone">
+                
+            </div>
+            <div class="next-btn">
+               <a href="javascript:nextDiv()" class="next-btn"><span>Next Step</span></a>
+            </div>
         </div>
 
         <div class="cap-create">
-            <p class="sampletext">キャプション入力画面</p>
+            <div class="preview-btn">
+                <a href="javascript:preview('open')">
+                    preview<i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+            <h3><i class="fa fa-tag" aria-hidden="true"></i>キャプション入力</h3>
+            <p>プロジェクトの内容を30文字以内で簡単に説明しよう</p>
+            <%= f.text_area :caption %>
+            <p class="alert-msg">30文字以内でお願い!!</p>
+            <div class="next-btn">
+               <a href="javascript:nextDiv()" class="next-btn"><span>Next Step</span></a>
+            </div>
         </div>
 
         <div class="text-create">
-            <p class="sampletext">メインテキスト入力画面</p>
+            <div class="preview-btn">
+                <a href="javascript:preview('open')">
+                    preview<i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+            <h3><i class="fa fa-tag" aria-hidden="true"></i>メインテキスト入力</h3>
+            <p>いい感じで本文キメちゃおうぜ<br>(markdown記法が使えます)</p>
+            <textarea rows="15"></textarea>
+            <div class="next-btn">
+               <a href="javascript:nextDiv()" class="next-btn"><span>Next Step</span></a>
+            </div>
         </div>
 
     </section>
     <% end %>
 
     <section class="preview">
-  
+        <div class="preview-btn">
+            <a href="javascript:preview('close')">
+                close<i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+        </div>
+        <h1>Preview-mode</h1>
+        <div class="preview-wrapper">
+            <div class="preview-text">
+                
+            </div>
+        </div>
     </section>
 
     <section class="tips">
-  
+        <h1>tips-mode</h1>
     </section>
 
     <div class="cancel"></div>
@@ -95,6 +191,7 @@
         // ---------------------
         // full-screen animation 
         // ---------------------
+
 
         var currentDiv = 0;
         var maxDiv = $( '.edit > div' ).length;
@@ -115,7 +212,35 @@
             $( '.edit > div' ).eq(currentDiv - 1).removeClass( 'hide' );
             $( '.edit > div' ).eq(currentDiv - 1).addClass( 'show' );
             currentDiv--;
+        }
 
+        var preview = function(tp){
+            if(tp == 'open'){
+                $( '.edit > div' ).eq(currentDiv).siblings().css({display:'none'});
+                $( '.edit' ).addClass( 'another-mode' );
+                $( '.preview' ).addClass( 'show' );
+            }
+            if(tp == 'close'){
+                $( '.edit > div' ).eq(currentDiv).siblings().css({display:''});
+                $( '.edit' ).removeClass( 'another-mode' );
+                $( '.preview' ).removeClass( 'show' );
+            }
+
+            in_preview();
+
+        }
+
+        var tips = function(tp){
+            if(tp == 'open'){
+                $( '.edit > div' ).eq(currentDiv).siblings().css({display:'none'});
+                $( '.edit' ).addClass( 'another-mode' );
+                $( '.tips' ).addClass( 'show' );
+            }
+            if(tp == 'close'){
+                $( '.edit > div' ).eq(currentDiv).siblings().css({display:''});
+                $( '.edit' ).removeClass( 'another-mode' );
+                $( '.tips' ).removeClass( 'show' );
+            }
         }
 
         setTimeout(function(){
@@ -123,8 +248,71 @@
         },4500);
         setTimeout(function(){
             $( '.edit > div' ).eq(currentDiv).addClass( 'show' );
+            nextDiv();
+            nextDiv();
+            nextDiv();
         },1);
 
+
+        // select 
+        $( '.select-fake a' ).on('click',function(){
+
+            tag_value = $(this).attr('tag');
+
+            if($( this ).children( 'i:nth-child(1)' ).css("display") != "none"){
+
+                $('[type="checkbox"]').prop("checked",false);
+                $( this ).parent('div').siblings().each(function(){
+                    console.log(this);
+                    $( this ).children( 'a' ).removeClass( 'checked' );
+                    $( this ).children( 'i:nth-child(2)' ).css({display: 'none'});
+                    $( this ).children( 'i:nth-child(1)' ).css({display: 'inline'});
+                });
+
+
+                $('[name="project['+ tag_value +']"]').prop("checked",true);
+                $( this ).addClass( 'checked' );
+                $( this ).children( 'i:nth-child(1)' ).css({display: 'none'});
+                $( this ).children( 'i:nth-child(2)' ).css({display: 'inline'});
+
+
+            } else {
+
+                $('[name="project['+ tag_value +']"]').prop("checked",false);
+                $( this ).removeClass( 'checked' );
+                $( this ).children( 'i:nth-child(2)' ).css({display: 'none'});
+                $( this ).children( 'i:nth-child(1)' ).css({display: 'inline'});
+
+            }
+
+        });
+
+        // cap 
+        $(".cap-create textarea").on("keyup",function(){
+            cap_now_text = $(this).val();
+            if(cap_now_text.length > 30) {
+                $( '.alert-msg' ).addClass( 'show-msg' );
+            } else {
+                $( '.alert-msg' ).removeClass( 'show-msg' );
+            }
+        });
+
+        $(function() {
+            $(".text-create textarea").linedtextarea();
+        });
+
+        // ---------------------
+        // markdowm 
+        // ---------------------
+
+        //readey
+        var in_preview = function(){
+
+            preview_text = $(".text-create textarea").val();
+            preview_text = preview_text.replace(/\*(.*?)\*/, '<span class="bold">$1</span>');
+            preview_text = preview_text.replace(/\#(.*?)\#/, '<span class="big">$1</span>');
+            $( '.preview-text' ).append(preview_text);
+        }
 
 
     </script>
