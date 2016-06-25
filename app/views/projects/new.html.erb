@@ -1,36 +1,455 @@
-<!-- プロジェクト新規募集 -->
-<%= form_for @project do |f| %>
-  <% if @project.errors.any? %>
-    <p><%= @project.errors.count %>件のエラーがあります。</p>
-    <ul>
-      <% @project.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :image %>
-  <%= f.file_field :image %>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  キャプション(50文字以内)<%= f.text_area :caption %>
-
-  <%= f.check_box :business %>ビジネス・スタートアップ
-  <%= f.check_box :social %>社会貢献
-  <%= f.check_box :music %>音楽
-  <%= f.check_box :art %>アート
-  <%= f.check_box :event %>イベント
-  <%= f.check_box :product %>プロダクト
-  <%= f.check_box :app %>アプリ
-  <%= f.check_box :game %>ゲーム
-  <%= f.check_box :food %>フード
-  <%= f.check_box :global %>グローバル
-  <%= f.check_box :fashion %>ファッション
-  <%= f.check_box :movie %>ムービー
-  <%= f.check_box :book %>本
 
 
-  <%= f.submit '募集' %>
-<% end %>
+<!-- プロジェクト作成 -->
+
+  <%= stylesheet_link_tag "new_project", :media => "all" %>
+  <%= stylesheet_link_tag "jquery-linedtextarea", :media => "all" %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <%= javascript_include_tag 'jquery.oncssanimationend', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'jquery-linedtextarea', 'data-turbolinks-track' => true %>
+
+    <div class="check-wra">
+        <div class="check-alert">
+            <i class="fa fa-ban" aria-hidden="true"></i>
+            <p></p>
+        </div>
+    </div>
+
+    <p class="top-msg">start projects</p>
+
+    <%= form_for @project do |f|%>
+    <section class="edit">
+
+        <div class="title-create">
+            <div class="btn-list">
+                <div class="preview-btn">
+                    <a href="javascript:preview('open')">
+                      <span>preview</span><i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="end-btn">
+                    <a href="#">
+                      <span>Cancel</span><i class="fa fa-ban" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <h3><i class="fa fa-cube" aria-hidden="true"></i>プロジェクトタイトル</h3>
+            <%= f.text_field :title ,placeholder:"キーワード"%>
+            <p>叶えたい事を入力してね!!</p>
+
+            <div class="next-btn">
+                <a href="javascript:nextDiv()"><span>Next Step</span></a>
+            </div>
+
+        </div>
+
+        <div class="tag-create">
+            <div class="btn-list">
+                <div class="preview-btn">
+                    <a href="javascript:preview('open')">
+                      <span>preview</span><i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="end-btn">
+                    <a href="#">
+                      <span>Cancel</span><i class="fa fa-ban" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+           <h3><i class="fa fa-tag" aria-hidden="true"></i>タグ選択</h3>
+                <div class="select-base">
+                    <%= f.check_box :business %>ビジネス・スタートアップ
+                    <%= f.check_box :social %>社会貢献
+                    <%= f.check_box :music %>音楽
+                    <%= f.check_box :art %>アート
+                    <%= f.check_box :event %>イベント
+                    <%= f.check_box :product %>プロダクト
+                    <%= f.check_box :app %>アプリ
+                    <%= f.check_box :game %>ゲーム
+                    <%= f.check_box :food %>フード
+                    <%= f.check_box :global %>グローバル
+                    <%= f.check_box :fashion %>ファッション
+                    <%= f.check_box :movie %>ムービー
+                    <%= f.check_box :book %>本
+                </div>
+                <div class="select-fake">
+                    <div><a href="javascript:false" tag="business">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>ビジネス
+                    </a></div>
+                    <div><a href="javascript:false" tag="social">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>社会貢献
+                    </a></div>
+                    <div><a href="javascript:false" tag="music">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>音楽
+                    </a></div>
+                    <div><a href="javascript:false" tag="art">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>アート
+                    </a></div>
+                   <div><a href="javascript:false" tag="event">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>イベント
+                    </a></div>
+                    <div><a href="javascript:false" tag="product">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>プロダクト
+                    </a></div>
+                    <div><a href="javascript:false" tag="app">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>アプリ
+                    </a></div>
+                    <div><a href="javascript:false" tag="game">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>ゲーム
+                    </a></div>
+                    <div><a href="javascript:false" tag="food">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>フード
+                    </a></div>
+                    <div><a href="javascript:false" tag="global">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>グローバル
+                    </a></div>
+                    <div><a href="javascript:false" tag="fashion">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>ファッション
+                    </a></div>
+                    <div><a href="javascript:false" tag="movie">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>ムービー
+                    </a></div>
+                    <div><a href="javascript:false" tag="book">
+                        <i class="fa fa-square-o" aria-hidden="true"></i><i class="fa fa-check-square-o" aria-hidden="true"></i>本
+                    </a></div>
+                </div>
+                <div class="next-btn">
+                    <a href="javascript:prevDiv()"><span>Prev Step</span></a>
+                    <a href="javascript:nextDiv()"><span>Next Step</span></a>
+                </div>
+        </div>
+
+        <div class="image-create">
+            <div class="btn-list">
+                <div class="preview-btn">
+                    <a href="javascript:preview('open')">
+                      <span>preview</span><i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="end-btn">
+                    <a href="#">
+                      <span>Cancel</span><i class="fa fa-ban" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <h3><i class="fa fa-tag" aria-hidden="true"></i>画像アップロード</h3>
+            <p>縦横比2:3を強く推奨</p>
+                <div class="up-zone">
+                    <%= f.file_field :image %>
+                    <p>画像をアップする</p>
+                </div>
+            <div class="next-btn">
+                <a href="javascript:prevDiv()"><span>Prev Step</span></a>
+                <a href="javascript:nextDiv()"><span>Next Step</span></a>
+            </div>
+        </div>
+
+        <div class="cap-create">
+            <div class="btn-list">
+                <div class="preview-btn">
+                    <a href="javascript:preview('open')">
+                      <span>preview</span><i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="end-btn">
+                    <a href="#">
+                      <span>Cancel</span><i class="fa fa-ban" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <h3><i class="fa fa-tag" aria-hidden="true"></i>キャプション入力</h3>
+            <p>プロジェクトの内容を30文字以内で簡単に説明しよう</p>
+            <%= f.text_area :caption %>
+            <p class="alert-msg">30文字以内でお願い!!</p>
+            <div class="next-btn">
+                <a href="javascript:prevDiv()"><span>Prev Step</span></a>
+                <a href="javascript:nextDiv()" ><span>Next Step</span></a>
+            </div>
+        </div>
+
+        <div class="text-create">
+            <div class="btn-list">
+                <div class="preview-btn">
+                    <a href="javascript:preview('open')">
+                      <span>preview</span><i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="end-btn">
+                    <a href="#">
+                      <span>Cancel</span><i class="fa fa-ban" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <h3><i class="fa fa-tag" aria-hidden="true"></i>メインテキスト入力</h3>
+            <p>いい感じで本文キメちゃおうぜ<br>(markdown記法が使えます)</p>
+             <%= f.text_area :description, rows:"15" %>
+            <div class="next-btn">
+                <a href="javascript:prevDiv()"><span>Prev Step</span></a>
+                <%= f.submit 'Finish' ,class:"submit-btn" %>
+            </div>
+        </div>
+
+    </section>
+    <% end %>
+
+    <section class="preview">
+        <div class="btn-list">
+            <div class="preview-btn">
+                <a href="javascript:preview('close')">
+                    <span>close</span><i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <h1>Preview-mode</h1>
+        <div class="preview-wrapper">
+            <h3 class="preview-title"></h3>
+            <div class="preview-img">
+                <div class="img-wra"></div>
+            </div>
+            <div class="preview-status">
+                <ul>
+                    <li class="tag"><i class="fa fa-tag" aria-hidden="true"></i></li>
+                    <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>20xx / xx / xx</li>
+                    <li class="user"><i class="fa fa-user" aria-hidden="true"></i><%= current_user.username %></li>
+                </ul>
+            </div>
+            <div class="preview-text">
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="tips">
+        <h1>tips-mode</h1>
+    </section>
+
+
+
+
+    <script type="text/javascript">
+        
+        // ---------------------
+        // full-screen animation 
+        // ---------------------
+
+        var file = undefined;
+        var currentDiv = 0;
+        var maxDiv = $( '.edit > div' ).length;
+
+        var nextDiv = function() {
+
+            if(currentDiv == maxDiv - 1) return false;
+            $( '.edit > div' ).eq(currentDiv).addClass( 'hide' );
+            $( '.edit > div' ).eq(currentDiv + 1).addClass( 'show' );
+            currentDiv++;
+
+        }
+
+        var prevDiv = function(){
+
+            if(currentDiv == 0) return false;
+            $( '.edit > div' ).eq(currentDiv).removeClass( 'show' );
+            $( '.edit > div' ).eq(currentDiv - 1).removeClass( 'hide' );
+            $( '.edit > div' ).eq(currentDiv - 1).addClass( 'show' );
+            currentDiv--;
+        }
+
+        var preview = function(tp){
+            if(tp == 'open'){
+                $( '.edit > div' ).eq(currentDiv).siblings().css({display:'none'});
+                $( '.edit' ).addClass( 'another-mode' );
+                $( '.preview' ).addClass( 'show' );
+            }
+            if(tp == 'close'){
+                $( '.edit > div' ).eq(currentDiv).siblings().css({display:''});
+                $( '.edit' ).removeClass( 'another-mode' );
+                $( '.preview' ).removeClass( 'show' );
+            }
+
+            in_preview();
+
+        }
+
+        var tips = function(tp){
+            if(tp == 'open'){
+                $( '.edit > div' ).eq(currentDiv).siblings().css({display:'none'});
+                $( '.edit' ).addClass( 'another-mode' );
+                $( '.tips' ).addClass( 'show' );
+            }
+            if(tp == 'close'){
+                $( '.edit > div' ).eq(currentDiv).siblings().css({display:''});
+                $( '.edit' ).removeClass( 'another-mode' );
+                $( '.tips' ).removeClass( 'show' );
+            }
+        }
+
+        setTimeout(function(){
+            $( '.top-msg' ).addClass( 'remove-msg' );
+        },4500);
+        setTimeout(function(){
+            $( '.edit > div' ).eq(currentDiv).addClass( 'show' );
+
+
+        },1);
+
+
+        // select 
+        $( '.select-fake a' ).on('click',function(){
+
+            tag_value = $(this).attr('tag');
+
+            if($( this ).children( 'i:nth-child(1)' ).css("display") != "none"){
+
+                $('[type="checkbox"]').prop("checked",false);
+                $( this ).parent('div').siblings().each(function(){
+                    $( this ).children( 'a' ).removeClass( 'checked' );
+                    $( this ).children( 'i:nth-child(2)' ).css({display: 'none'});
+                    $( this ).children( 'i:nth-child(1)' ).css({display: 'inline'});
+                });
+
+
+                $('[name="project['+ tag_value +']"]').prop("checked",true);
+                $( this ).addClass( 'checked' );
+                $( this ).children( 'i:nth-child(1)' ).css({display: 'none'});
+                $( this ).children( 'i:nth-child(2)' ).css({display: 'inline'});
+
+
+            } else {
+
+                $('[name="project['+ tag_value +']"]').prop("checked",false);
+                $( this ).removeClass( 'checked' );
+                $( this ).children( 'i:nth-child(2)' ).css({display: 'none'});
+                $( this ).children( 'i:nth-child(1)' ).css({display: 'inline'});
+
+            }
+
+        });
+
+        // input image 
+
+
+
+        $('.up-zone input[type=file]').on('drop', function(e){
+             e.preventDefault();
+        });
+        $('.up-zone input[type=file]').change(function() {
+            file = $(this).prop('files')[0];
+
+            if(file == undefined){
+                $( '.up-zone > p' ).html('画像をアップする');
+                return false;
+            }
+
+    
+            if (! file.type.match('image.*')) {
+                $(this).val('');
+                return;
+            }
+    
+            var file_reader = new FileReader();
+            file_reader.onload = function() {
+                file_size  = Math.floor(file.size / 100) / 10;
+                info_text = "選択中ファイル : " + file.name + "<br>" + file_size + "KB";
+               $( '.up-zone > p' ).html(info_text);
+               $('.img-wra').html('<img src="' + file_reader.result +'">');
+            }
+            file_reader.readAsDataURL(file);
+        });
+
+        // cap 
+        $(".cap-create textarea").on("keyup",function(){
+            cap_now_text = $(this).val();
+            if(cap_now_text.length > 30) {
+                $( '.alert-msg' ).addClass( 'show-msg' );
+            } else {
+                $( '.alert-msg' ).removeClass( 'show-msg' );
+            }
+        });
+
+        $(function() {
+            $(".text-create textarea").linedtextarea();
+        });
+
+        // ---------------------
+        // markdowm 
+        // ---------------------
+
+
+        var in_preview = function(){
+
+            // title
+            preview_title = $(".title-create input").val();
+            $( '.preview-title' ).html(preview_title);
+
+            //tag
+            req = $( '[type="checkbox"]:checked' );
+            req_id = req.attr('id');
+            if(req_id != undefined){
+                console.log('not undefined');
+                tag = req_id.replace( /project_/g , "" );
+                preview_tag = $( '[tag="' + tag + '"]' ).text().trim();
+                $( '.preview-status  .tag' ).html('<i class="fa fa-tag" aria-hidden="true"></i>' + preview_tag);
+            }
+
+
+
+
+            // text
+            preview_text = $(".text-create textarea").val();
+
+            preview_text = preview_text.replace(/\n/g,"<br>\n");
+            preview_text = preview_text.replace(/\*(.*)\*/g, '<span class="bold">$1</span>');
+            preview_text = preview_text.replace(/\###(.*)\<br>/g, '<h6 class="small-title">$1</h6>');
+            preview_text = preview_text.replace(/\##(.*)\<br>/g, '<h6 class="min-title">$1</h6>');
+            preview_text = preview_text.replace(/\#(.*)\<br>/g, '<h5 class="min-title">$1</h5>');
+            preview_text = preview_text.replace( /\[(.*)\]\((.*)\)/g , '<a href="$2">$1</a>' );
+
+
+            $( '.preview-text' ).html(preview_text);
+        }
+
+        // check
+
+        var check_end = function(){
+            $( '.check-alert' ).removeClass( 'show' );
+            setTimeout(function(){
+                $( '.check-wra' ).css({display:''});
+            },350);
+        }
+        $( '.check-alert i' ).on('click',function(){
+            check_end();
+        });
+
+        $( 'form' ).submit(function(){
+
+            error_text = "";
+            if($(".title-create input").val() == "")
+                error_text = error_text + "タイトルが入力されてません<br>";
+            if(file == undefined)
+                error_text = error_text + "画像がアップロードされてません<br>";
+            if($( '[type="checkbox"]:checked' ).html() == undefined)
+                error_text = error_text + "タグが選択されてません<br>";
+            if($(".cap-create textarea").val() == "")
+                error_text = error_text + "キャプションが入力されてません<br>";
+            if($(".text-create textarea").val() == "")
+                error_text = error_text + "本文が入力されてません<br>";
+
+            if(error_text == ""){
+                return true;
+            }
+            $( '.check-alert p' ).html(error_text);
+
+            $( '.check-wra' ).css({display:'block'});
+            setTimeout(function(){
+                $( '.check-alert' ).addClass( 'show' );
+            },100);
+
+            return false;
+            
+
+        });
+
+
+    </script>
+
