@@ -2,8 +2,6 @@
 	<%= stylesheet_link_tag "users", :media => "all" %>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<%= javascript_include_tag 'jquery.oncssanimationend', 'data-turbolinks-track' => true %>
-
-
 	<div class="sp-menu sp">
 		<ul>
 			<li><a href="#"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
@@ -123,7 +121,7 @@
 								<%= link_to project.title, project_path(project.id) %>
 							</h3>
 							<p>
-								<i class="fa fa-check-square-o"></i><%= project.description %>
+								<i class="fa fa-check-square-o"></i><%= project.caption %>
 							</p>
 							<p>
 								<i class="fa fa-user"></i><%= project.user.username %>
@@ -139,13 +137,13 @@
 				<% end %>
 			</div>
 			<div class="main-item-list heart-project">
-				<% if @projects.empty? %>
+				<% if @like_projects.empty? %>
 					<div class="projects_not_zone">
 						<p>not projects</p>
 					</div>
 				<% end %>	
 	
-				<% @projects.each do |project| %>
+				<% @like_projects.each do |project| %>
 					<div class="item-space">
 						<div class="main-item">
 							<a class="img_link" href="#">
@@ -155,7 +153,7 @@
 								<%= link_to project.title, project_path(project.id) %>
 							</h3>
 							<p>
-								<i class="fa fa-check-square-o"></i><%= project.description %>
+								<i class="fa fa-check-square-o"></i><%= project.caption %>
 							</p>
 							<p>
 								<i class="fa fa-user"></i><%= project.user.username %>
