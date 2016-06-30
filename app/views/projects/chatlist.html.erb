@@ -1,4 +1,4 @@
-    <%= stylesheet_link_tag "chat", :media => "all" %>
+    <%= stylesheet_link_tag "chat-list", :media => "all" %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <%= javascript_include_tag 'jquery.oncssanimationend', 'data-turbolinks-track' => true %>
     <div class="sp-menu sp">
@@ -49,49 +49,50 @@
             </div>
         </div>
     </section>
-    <section class="chat">
-        <div class="chat-wra">
-            <h5>Chat</h5>
-            <div class="msg-wra">
-                <% @messages.each do |message| %>
-                    <div class="message-box">
-                    <%= image_tag "/user_images/#{message.user.image}" %>
-                    <p class="msg-name"><%= message.user.username %></p>
-                    <p class="msg-text"><%= message.body %></p>
+    <section class="chat-list">
+        <div class="list-wra">
+            <div class="list-head">
+                <h5>過去のチャット一覧</h5>
+            </div>
+            <div class="list-body">
+                <a href="#" class="list-item">
+                    <div class="img-wra">
+                        <img src="http://tanakakun.tv/special/img/icon_160430/icon2_miyano.jpg">
                     </div>
-                <% end %>
+                    <div class="text-wra">
+                        <h6 class="project-title">サンプルぷろじぇくとタイトル</h6>
+                        <span class="project-owner">  
+                            <i class="fa fa-user sq" aria-hidden="true"></i>
+                            Hello
+                        </span>
+                    </div>
+                </a>
+                <a href="#" class="list-item">
+                    <div class="img-wra">
+                        <img src="http://tanakakun.tv/special/img/icon_160430/icon2_ohta.jpg">
+                    </div>
+                    <div class="text-wra">
+                        <h6 class="project-title">サンプルぷろじぇくとタイトル</h6>
+                        <span class="project-owner">  
+                            <i class="fa fa-user sq" aria-hidden="true"></i>
+                            Hello
+                        </span>
+                    </div>
+                </a>
+                <a href="#" class="list-item">
+                    <div class="img-wra">
+                        <img src="http://tanakakun.tv/special/img/icon_160430/icon2_shiraishi.jpg">
+                    </div>
+                    <div class="text-wra">
+                        <h6 class="project-title">サンプルぷろじぇくとタイトル</h6>
+                        <span class="project-owner">  
+                            <i class="fa fa-user sq" aria-hidden="true"></i>
+                            Hello
+                        </span>
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="send-wra">
-            <textarea rows="3"></textarea>
-            <div class="send"><p><i class="fa fa-paper-plane" aria-hidden="true"></i>Send</p></div>
-        </div>
-
-        <div class="chat-info">
-            <div class="icon-wra">
-                <i class="fa fa-info-circle" aria-hidden="true"></i>
-            </div>
-            <div class="info-text">
-                <h6 class="project-name"><%= @room.project.title %></h6>
-                <p class="project-caption">
-                    <span>  
-                        <i class="fa fa-check-square-o sq"></i>
-                        <%= @room.project.caption %>
-                    </span>
-                </p>
-                <p class="owner-name">
-                    <span>  
-                        <i class="fa fa-user sq" aria-hidden="true"></i>
-                        <%= link_to @owner.username, user_path(@owner) %>
-                    </span>
-                </p>
-            </div>
-            <p class="view-project">
-                <%= link_to 'プロジェクトを見る ', project_path(@room.project.id) %>
-                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-            </p>
-        </div>
-        
     </section>
     <section class="footer">
         <div class="first">
@@ -184,31 +185,6 @@ $(function(){
     );
 
 
-    var dispatcher = new WebSocketRails('localhost:3000/websocket');
-    var channel = dispatcher.subscribe('<%= @room.channel %>');
-
-    var text_input = $('.send-wra textarea');
-    var form_submit = $('.send');
-    var msg_box = $('.msg-wra');
-
-
-    $(form_submit).on('click',function(e){
-        dispatcher.trigger("send_message", { msg: $(text_input).val(), ch: '<%= @room.channel %>' });
-        e.preventDefault();
-    });
-
-
-    channel.bind('post', function(data) {
-
-    append_content = $('<div class="message-box">' + 
-                            '<img src="/user_images/' + data.user.image + '">' +
-                            '<p class="msg-name">' + data.user.username + '</p>' + 
-                            '<p class="msg-text">' + data.msg + '</p>' + 
-                        '</div>');
-
-    $(msg_box).append(append_content);
-
-    });
 
 });
 </script>
