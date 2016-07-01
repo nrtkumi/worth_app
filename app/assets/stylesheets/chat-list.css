@@ -237,6 +237,7 @@ textarea:focus {
 .list-body > .list-item .text-wra {
 	font-family: 'hosofont';
 	float: left;
+	width: calc(100% - 10em);
 }
 .list-body > .list-item .text-wra h6 {
 	margin: 0;
@@ -412,6 +413,11 @@ textarea:focus {
 	.sp-menu ul li {
 		font-size: 1.1em;
 	}
+	.chat-list > .list-wra {	
+		width: 80%;
+		background: white;
+		margin: 8em auto 3em;
+	}
 
 }
 
@@ -445,5 +451,39 @@ textarea:focus {
 	}
 	.sp-menu ul li {
 		font-size: 1em;
+	}
+	/* chat sec */
+	.chat-list > .list-wra {	
+		width: 95%;
+		background: white;
+		margin: 6em auto 3em;
+	}
+	.chat-list > .list-wra h5 {
+		padding: 1em;
+		font-size: 1.1em;
+	}
+	
+	.list-body > .list-item .img-wra  {
+		width: 5.5em;
+		padding: .5em;
+	}
+	.list-body > .list-item .img-wra img {
+		width: 90%;
+	}
+	.list-body > .list-item .text-wra {
+		width: calc(100% - 7em);
+		padding: .25em;
+	}
+	.list-body > .list-item .text-wra h6 {
+		margin: 1em 0;
+		font-size: .85em;
+	}
+	.list-body > .list-item .text-wra .project-owner {
+		font-size: .75em;
+	}
+	.list-body > .list-item .text-wra .sq {
+		padding: .5em;
+		border-radius: 100px;
+		opacity: 0.75;
 	}
 }

@@ -194,6 +194,7 @@ $(function(){
 
     $(form_submit).on('click',function(e){
         dispatcher.trigger("send_message", { msg: $(text_input).val(), ch: '<%= @room.channel %>' });
+        $(text_input).val("");
         e.preventDefault();
     });
 

@@ -330,6 +330,7 @@ textarea:focus {
 }
  .chat-info > .info-text > .owner-name span,
  .chat-info > .info-text > .project-caption span {
+ 	font-family: 'hosofont';
 	font-size:.8em;
 }
  .chat-info > .info-text > .owner-name span a {
@@ -550,5 +551,91 @@ textarea:focus {
 	}
 	.sp-menu ul li {
 		font-size: 1em;
+	}
+	.chat-wra {
+		width: 95%;
+		height: 25em;
+		margin: 6em auto 0;
+	}
+	.chat-wra > h5 {
+		font-size: 1.2em;
+		padding: .75em;
+	}
+	.msg-wra{
+		height: 22em;
+	}
+	.message-box {
+		padding:.75em;
+	}
+	.message-box img{
+		border-radius: 100px;
+		width: 2.75em;
+	}
+	.message-box .msg-name {
+		font-size: .8em;
+		position: relative;
+		left: 16px;
+	}
+	.msg-text {
+	    font-size: .75em;
+	    width: 55%;
+	    margin: 0 auto 0 5em;
+	    padding: 1em;
+	}
+	
+	.send-wra {
+		padding: .5em;
+		width: 95%;
+		height: 5em;
+	}
+	.send-wra textarea {
+		font-size: .85em;
+	}
+	.send-wra .send {
+		margin: 0;
+		margin-left:2%; 
+		width: 23%;
+		height: 100%;
+	}
+	.send-wra .send p {
+		padding: 0;
+		margin:0;
+		color: white;
+		font-size: .9em;
+	}
+	
+	.chat-info {
+		width: 95%;
+		margin:1em auto 2em;
+		padding: 3em 1em;
+	}
+	.chat-info > .icon-wra {
+		width: 30%;
+	}
+	.chat-info > .icon-wra > i {
+		font-size: 7em;
+	}
+	.chat-info > .info-text {
+		width: 70%;
+		float: right;
+	}
+	.chat-info > .info-text .project-name {
+		font-size: 1.25em;
+		margin:1em 0 0;
+	}
+	 .chat-info > .info-text > .owner-name span,
+	 .chat-info > .info-text > .project-caption span {
+		font-size:.75em;
+	}
+	.chat-info > .info-text .sq {
+		padding: .5em;
+		font-size: 1.0em;
+	}
+	.view-project {
+		padding: .25em .75em;
+		font-size: .75em;
+	}
+	.view-project i {
+		font-size: 110%;
 	}
 }
