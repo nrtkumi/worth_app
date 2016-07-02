@@ -1,20 +1,28 @@
 <h1><%= @room.project.title %></h1>
 <%= @owner.username %>
 
-<form id="form">
-  <input id="text_input">
-  <input type="submit">
-</form>
+<%= form_tag(:message, :remote => true) do %>
+  <%= text_field_tag 'message' %>
+  <%= text_field_tag 'ch' %>
+  <%= submit_tag 'send' %>
+<% end %>
+<div id='messagelog'></div>
 
-<ul id="msg_box">
-  <% @messages.each do |message| %>
-    <li><%= message.body %>:<%= message.user.username %>:<%= message.created_at %></li>
-    <!-- ログを出力(本文と送信者名と送信時間) -->
-  <% end %>
-  <!-- ここにsocket通信で受け取ったmessageを出力 -->
-</ul>
+<script src="https://js.pusher.com/3.1/pusher.min.js"></script>
+<script type="text/javascript">
+Pusher.logToConsole = true;
 
+var pusher = new Pusher('a774d21cd6a18ea2d2f0');
+var channel = pusher.subscribe('general_channel');
+channel.bind('chat_event', function(data) {
+var messagelog = document.getElementById('messagelog');
+var messagediv = document.createElement('div');
+messagediv.innerHTML = data.message;
+messagelog.appendChild(messagediv);
+});
+</script>
 <script>
+/*
   $(document).ready(function(e) {
     var dispatcher = new WebSocketRails('localhost:3000/websocket');
     var channel = dispatcher.subscribe('<%= @room.channel %>');
@@ -37,4 +45,6 @@
       msg_box.appendChild(li);
     });
   });
+
+  */
 </script>

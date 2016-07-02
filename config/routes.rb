@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post 'like/:project_id' => 'likes#like', as: 'like'
   delete 'unlike/:project_id' => 'likes#unlike', as: 'unlike'
   get 'search' => 'top#search'
+  post 'message' => 'messages#hello_world'
   root 'top#home'
 
 end
