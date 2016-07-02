@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'rooms/index'
+  # get 'rooms/index'
 
-  get 'rooms/show'
+  # get 'rooms/show'
 
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks" }
   resources :users, only: [:index, :show, :edit, :update]

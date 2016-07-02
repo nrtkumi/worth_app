@@ -50,7 +50,7 @@
         </div>
     </section>
     <section class="project">
-        
+
         <div class="project-wrapper">
             <h3 class="project-title"><%= @project.title %></h3>
             <div class="project-img">
@@ -105,7 +105,7 @@
                     </span>
                 </p>
                 <p class="owner-job">
-                    <span>  
+                    <span>
                         <i class="fa fa-cog sq" aria-hidden="true"></i>
                         <%= @project.user.job %>
                     </span>
@@ -162,13 +162,13 @@
 
 $(function(){
 
-    /* ------------------------------------------------- */ 
-    /* ------------------------------------------------- */ 
+    /* ------------------------------------------------- */
+    /* ------------------------------------------------- */
     /*                  menu                             */
-    /* ------------------------------------------------- */ 
-    /* ------------------------------------------------- */ 
+    /* ------------------------------------------------- */
+    /* ------------------------------------------------- */
     $(window).scroll(function (){
-        var header_top = $(".fix-contents").offset().top; 
+        var header_top = $(".fix-contents").offset().top;
         if( header_top <= $(this).scrollTop() ){
             $('.fix-contents').addClass('fix');
         }
@@ -231,4 +231,3 @@ $(function(){
 
 });
 </script>
-
