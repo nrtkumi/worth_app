@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  # test
+  get '/chat-list', to: 'projects#chatlist'
+  # test end
+
   get 'rooms/index'
 
   get 'rooms/show'
