@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
     msg = Message.new
     msg.user_id = current_user.id
     msg.room_id = params[:id]
+    msg.project_id = params[:id]
     msg.body = params[:message]
     msg.save
 
