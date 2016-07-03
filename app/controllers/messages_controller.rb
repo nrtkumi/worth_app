@@ -1,3 +1,16 @@
+class MessagesController < ApplicationController
+
+  def hello_world
+    Pusher['general_channel'].trigger('chat_event', {
+      message: params[:message]
+    })
+    render :text => 'OK', :status => 200
+  end
+end
+
+
+
+=begin
 class MessagesController < WebsocketRails::BaseController
   # before_action :authenticate_user!
   def create
@@ -11,3 +24,4 @@ class MessagesController < WebsocketRails::BaseController
     WebsocketRails[message["ch"]].trigger(:post, message)
   end
 end
+=end

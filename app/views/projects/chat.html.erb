@@ -74,13 +74,13 @@
             <div class="info-text">
                 <h6 class="project-name"><%= @room.project.title %></h6>
                 <p class="project-caption">
-                    <span>  
+                    <span>
                         <i class="fa fa-check-square-o sq"></i>
                         <%= @room.project.caption %>
                     </span>
                 </p>
                 <p class="owner-name">
-                    <span>  
+                    <span>
                         <i class="fa fa-user sq" aria-hidden="true"></i>
                         <%= link_to @owner.username, user_path(@owner) %>
                     </span>
@@ -91,7 +91,7 @@
                 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
             </p>
         </div>
-        
+
     </section>
     <section class="footer">
         <div class="first">
@@ -138,13 +138,13 @@
 
 $(function(){
 
-    /* ------------------------------------------------- */ 
-    /* ------------------------------------------------- */ 
+    /* ------------------------------------------------- */
+    /* ------------------------------------------------- */
     /*                  menu                             */
-    /* ------------------------------------------------- */ 
-    /* ------------------------------------------------- */ 
+    /* ------------------------------------------------- */
+    /* ------------------------------------------------- */
     $(window).scroll(function (){
-        var header_top = $(".fix-contents").offset().top; 
+        var header_top = $(".fix-contents").offset().top;
         if( header_top <= $(this).scrollTop() ){
             $('.fix-contents').addClass('fix');
         }
@@ -201,10 +201,10 @@ $(function(){
 
     channel.bind('post', function(data) {
 
-    append_content = $('<div class="message-box">' + 
+    append_content = $('<div class="message-box">' +
                             '<img src="/user_images/' + data.user.image + '">' +
-                            '<p class="msg-name">' + data.user.username + '</p>' + 
-                            '<p class="msg-text">' + data.msg + '</p>' + 
+                            '<p class="msg-name">' + data.user.username + '</p>' +
+                            '<p class="msg-text">' + data.msg + '</p>' +
                         '</div>');
 
     $(msg_box).append(append_content);
@@ -212,7 +212,5 @@ $(function(){
     });
 
 });
+
 </script>
-
-
-

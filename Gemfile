@@ -35,7 +35,9 @@ gem 'devise'
 gem 'omniauth-twitter'
 gem 'rails-i18n'
 gem 'jquery-turbolinks'
-gem 'websocket-rails'
+# gem 'websocket-rails'
+gem 'pusher'
+
 gem 'web-console', '~> 2.0', group: :development
 
 group :development, :test do
