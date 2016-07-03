@@ -55,17 +55,23 @@
             <div class="msg-wra">
                 <% @messages.each do |message| %>
                     <div class="message-box">
-                    <%= image_tag "/user_images/#{message.user.image}" %>
+                    <% if message.user.image %>
+                      <%= image_tag "/user_images/#{message.user.image}" %>
+                    <% else %>
+                      <%= image_tag "default.jpeg" %>
+                    <% end %>
                     <p class="msg-name"><%= message.user.username %></p>
                     <p class="msg-text"><%= message.body %></p>
                     </div>
                 <% end %>
             </div>
         </div>
+        <%= form_tag(:message_project, :remote => true) do %>
         <div class="send-wra">
-            <textarea rows="3"></textarea>
-            <div class="send"><p><i class="fa fa-paper-plane" aria-hidden="true"></i>Send</p></div>
+            <textarea rows="3" name="message"></textarea>
+            <div class="send"><p><i class="fa fa-paper-plane" aria-hidden="true"></i><%= submit_tag 'send' %></p></div>
         </div>
+        <% end %>
 
         <div class="chat-info">
             <div class="icon-wra">
@@ -132,6 +138,7 @@
         <div class="clear"></div>
     </section>
 
+    <script src="https://js.pusher.com/3.1/pusher.min.js"></script>
     <script type="text/javascript">
 
 
@@ -184,33 +191,27 @@ $(function(){
     );
 
 
-    var dispatcher = new WebSocketRails('localhost:3000/websocket');
-    var channel = dispatcher.subscribe('<%= @room.channel %>');
+    var pusher = new Pusher('a774d21cd6a18ea2d2f0', {
+     encrypted: true
+    });
+    var channel = pusher.subscribe('<%= @room.channel %>');
 
-    var text_input = $('.send-wra textarea');
-    var form_submit = $('.send');
     var msg_box = $('.msg-wra');
 
+    channel.bind('chat_event', function(data) {
+      if (data.user.image) {
+        icon = '<img src="/user_images/' + data.user.image + '">'
+      } else {
+        icon = '<%= image_tag "default.jpeg" %>'
+      }
 
-    $(form_submit).on('click',function(e){
-        dispatcher.trigger("send_message", { msg: $(text_input).val(), ch: '<%= @room.channel %>' });
-        $(text_input).val("");
-        e.preventDefault();
+      append_content = $('<div class="message-box">' +
+                              icon +
+                              '<p class="msg-name">' + data.user.username + '</p>' +
+                              '<p class="msg-text">' + data.message + '</p>' +
+                          '</div>');
+
+      $(msg_box).append(append_content);
     });
-
-
-    channel.bind('post', function(data) {
-
-    append_content = $('<div class="message-box">' +
-                            '<img src="/user_images/' + data.user.image + '">' +
-                            '<p class="msg-name">' + data.user.username + '</p>' +
-                            '<p class="msg-text">' + data.msg + '</p>' +
-                        '</div>');
-
-    $(msg_box).append(append_content);
-
-    });
-
 });
-
 </script>

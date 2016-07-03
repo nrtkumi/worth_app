@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   include ApplicationHelper
 
-  before_action :authenticate_user!, only:[:new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only:[:new, :edit, :update, :destroy, :chat, :chatlist]
   before_action :correct_project, only:[:edit, :update, :destroy]
 
 
@@ -77,6 +77,10 @@ class ProjectsController < ApplicationController
     @room = Room.find_by(project_id: params[:id])
     @owner = @room.owner
     @messages = Message.where(room_id: @room.id)
+  end
+
+  def chatlist
+    @rooms = Message.where(user_id: current_user.id)
   end
 
   private

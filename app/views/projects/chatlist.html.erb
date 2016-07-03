@@ -61,7 +61,7 @@
                     </div>
                     <div class="text-wra">
                         <h6 class="project-title">サンプルぷろじぇくとタイトル</h6>
-                        <span class="project-owner">  
+                        <span class="project-owner">
                             <i class="fa fa-user sq" aria-hidden="true"></i>
                             Hello
                         </span>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="text-wra">
                         <h6 class="project-title">サンプルぷろじぇくとタイトル</h6>
-                        <span class="project-owner">  
+                        <span class="project-owner">
                             <i class="fa fa-user sq" aria-hidden="true"></i>
                             Hello
                         </span>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="text-wra">
                         <h6 class="project-title">サンプルぷろじぇくとタイトル</h6>
-                        <span class="project-owner">  
+                        <span class="project-owner">
                             <i class="fa fa-user sq" aria-hidden="true"></i>
                             Hello
                         </span>
@@ -132,6 +132,9 @@
         </div>
         <div class="clear"></div>
     </section>
+    <% @rooms.each do |room| %>
+      <%= room.where_room.title %>
+    <% end %>
 
     <script type="text/javascript">
 
@@ -139,13 +142,13 @@
 
 $(function(){
 
-    /* ------------------------------------------------- */ 
-    /* ------------------------------------------------- */ 
+    /* ------------------------------------------------- */
+    /* ------------------------------------------------- */
     /*                  menu                             */
-    /* ------------------------------------------------- */ 
-    /* ------------------------------------------------- */ 
+    /* ------------------------------------------------- */
+    /* ------------------------------------------------- */
     $(window).scroll(function (){
-        var header_top = $(".fix-contents").offset().top; 
+        var header_top = $(".fix-contents").offset().top;
         if( header_top <= $(this).scrollTop() ){
             $('.fix-contents').addClass('fix');
         }
@@ -188,6 +191,3 @@ $(function(){
 
 });
 </script>
-
-
-
