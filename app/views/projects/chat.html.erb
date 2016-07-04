@@ -69,7 +69,10 @@
         <%= form_tag(:message_project, :remote => true) do %>
         <div class="send-wra">
             <textarea rows="3" name="message"></textarea>
-            <div class="send"><p><i class="fa fa-paper-plane" aria-hidden="true"></i><%= submit_tag 'send' %></p></div>
+            <div class="send">
+            <%= submit_tag 'send' %>
+                <p><i class="fa fa-paper-plane" aria-hidden="true"></i>send</p>
+            </div>
         </div>
         <% end %>
 
@@ -197,6 +200,11 @@ $(function(){
     var channel = pusher.subscribe('<%= @room.channel %>');
 
     var msg_box = $('.msg-wra');
+
+    $('form .send').on('click',function(){
+        $('form textarea').val("");
+    });
+
 
     channel.bind('chat_event', function(data) {
       if (data.user.image) {
