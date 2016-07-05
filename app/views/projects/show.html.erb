@@ -59,7 +59,7 @@
             <div class="project-status">
                 <ul>
                     <li class="tag"><i class="fa fa-tag" aria-hidden="true"></i><%= what_tag(@project) %></li>
-                    <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>20xx / xx / xx</li>
+                    <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i><%= @project.created_at.strftime('%Y年%m月%d日') %></li>
                     <li class="user"><i class="fa fa-user" aria-hidden="true"></i><%= link_to @project.user.username, user_path(@project.user) %></li>
                 </ul>
             </div>
