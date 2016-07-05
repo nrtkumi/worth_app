@@ -200,11 +200,11 @@ $(function(){
     var channel = pusher.subscribe('<%= @room.channel %>');
 
     var msg_box = $('.msg-wra');
-
+/*
     $('form .send').on('click',function(){
         $('form textarea').val("");
     });
-
+*/
 
     channel.bind('chat_event', function(data) {
       if (data.user.image) {
