@@ -55,42 +55,9 @@
                 <h5>過去のチャット一覧</h5>
             </div>
             <div class="list-body">
-                <a href="#" class="list-item">
-                    <div class="img-wra">
-                        <img src="http://tanakakun.tv/special/img/icon_160430/icon2_miyano.jpg">
-                    </div>
-                    <div class="text-wra">
-                        <h6 class="project-title">サンプルぷろじぇくとタイトル</h6>
-                        <span class="project-owner">
-                            <i class="fa fa-user sq" aria-hidden="true"></i>
-                            Hello
-                        </span>
-                    </div>
-                </a>
-                <a href="#" class="list-item">
-                    <div class="img-wra">
-                        <img src="http://tanakakun.tv/special/img/icon_160430/icon2_ohta.jpg">
-                    </div>
-                    <div class="text-wra">
-                        <h6 class="project-title">サンプルぷろじぇくとタイトル</h6>
-                        <span class="project-owner">
-                            <i class="fa fa-user sq" aria-hidden="true"></i>
-                            Hello
-                        </span>
-                    </div>
-                </a>
-                <a href="#" class="list-item">
-                    <div class="img-wra">
-                        <img src="http://tanakakun.tv/special/img/icon_160430/icon2_shiraishi.jpg">
-                    </div>
-                    <div class="text-wra">
-                        <h6 class="project-title">サンプルぷろじぇくとタイトル</h6>
-                        <span class="project-owner">
-                            <i class="fa fa-user sq" aria-hidden="true"></i>
-                            Hello
-                        </span>
-                    </div>
-                </a>
+              <% @lists.each do |list| %>
+                <%= render 'projects/list', list: list %>
+              <% end %>
             </div>
         </div>
     </section>

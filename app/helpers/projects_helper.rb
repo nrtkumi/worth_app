@@ -31,4 +31,8 @@ module ProjectsHelper
   				''
   		end
   	end
+
+		def project_detail(project)
+			Project.find(project)
+		end
 end

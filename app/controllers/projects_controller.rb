@@ -80,7 +80,7 @@ class ProjectsController < ApplicationController
   end
 
   def chatlist
-    @rooms = Message.where(user_id: current_user.id)
+    @lists = List.where(user_id: current_user.id)
   end
 
   private

@@ -1,0 +1,13 @@
+<% project = project_detail(list.project_id) %>
+<a href="/projects/<%= list.project_id %>/chat" class="list-item">
+    <div class="img-wra">
+        <%= image_tag "/project_images/#{project.image}" %>
+    </div>
+    <div class="text-wra">
+        <h6 class="project-title"><%= project.title %></h6>
+        <span class="project-owner">
+            <i class="fa fa-user sq" aria-hidden="true"></i>
+            <%= project.user.username %>
+        </span>
+    </div>
+</a>
