@@ -2,9 +2,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<div class="sp-menu sp">
 		<ul>
-			<li><a href="#"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
-			<li><a href="#"><i class="fa fa-list"></i>ワード検索</a></li>
-			<li><a href="#"><i class="fa fa-asterisk"></i>カテゴリ検索</a></li>
+			<li><a href="/projects/new"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
+			<li><a href="/search"><i class="fa fa-list"></i>ワード検索</a></li>
+			<li><a href="/search"><i class="fa fa-asterisk"></i>カテゴリ検索</a></li>
 			<li>
 				<% if user_signed_in? %>
 					<%= link_to  user_path(current_user.id) do%>
@@ -16,14 +16,14 @@
 					<% end %>
 				<% end %>
 			</li>
-			<li><a href="#"><i class="fa fa-commenting-o"></i>チャット</a></li>
+			<li><a href="/chat-list"><i class="fa fa-commenting-o"></i>チャット</a></li>
 			<li class="close"><a href="#"><i class="fa fa-times-circle"></i>閉じる</a></li>
 		</ul>
 	</div>
 	<section class="header">
 		<div class="header-contents">
 			<div class="fix-contents">
-				<h4>Worse</h4>
+				<h4>Worth</h4>
 				<!-- phone -->
 				<a class="fix-list sp" href="javascript:false()">
 					<i class="fa fa-bars sp-bar"></i>
@@ -31,8 +31,8 @@
 				<!-- phone -->
 
 				<ul class="fix-list pc">
-					<li><a href="#"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
-					<li><a href="#"><i class="fa fa-search"></i>探す</a></li>
+					<li><a href="/projects/new"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
+					<li><a href="/search"><i class="fa fa-search"></i>探す</a></li>
 					<li  class="drop-child">
 						<a href="#"><i class="fa fa-user"></i>ユーザー<i class="fa fa-caret-down"></i></a>
 						<ul class="drop-down">
@@ -53,7 +53,7 @@
 							</li>
 						</ul>
 					</li>
-					<li><a href="#"><i class="fa fa-commenting-o"></i>チャット</a></li>
+					<li><a href="/chat-list"><i class="fa fa-commenting-o"></i>チャット</a></li>
 				</ul>
 			</div>
 			<div class="title-box">
@@ -74,7 +74,7 @@
 		<div class="search-form">
 			<p><input><a href="#">探す</a></p>
 		</div>
-				
+
 	</section>
 
 	<section class="main-item-list picup">
@@ -381,7 +381,7 @@
 	<section class="footer">
 		<div class="first">
 			<ul>
-				<li><a href="#">プロジェクトを作る</a></li>
+				<li><a href="/projects/new">プロジェクトを作る</a></li>
 				<li><a href="#">Worseについて</a></li>
 			</ul>
 		</div>
@@ -389,20 +389,23 @@
 			<div class="one-block">
 				<h5>Menu</h5>
 				<ul>
-					<li><a href="#">プロジェクトを作る</a></li>
-					<li><a href="#">ワード検索</a></li>
-					<li><a href="#">カテゴリ検索</a></li>
-					<li><a href="#">ユーザーページ</a></li>
-					<li><a href="#">チャット</a></li>
-					<li><a href="#">ログイン</a></li>
+					<li><a href="/projects/new">プロジェクトを作る</a></li>
+					<li><a href="/search">ワード検索</a></li>
+					<li><a href="/search">カテゴリ検索</a></li>
+					<% if user_signed_in? %>
+						<li><%= link_to 'ユーザーページ', user_path(current_user.id) %></li>
+						<li><a href="/chat-list">チャット</a></li>
+					<% else %>
+						<li><%= link_to 'ログイン', new_user_session_path %></li>
+					<% end %>
 				</ul>
 			</div>
 			<div class="twe-block">
 				<h5>developer</h5>
 				<ul>
-					<li><a href="#">@nyaratakumi</a></li>
-					<li><a href="#">@_Ghostrick_</a></li>
-					<li><a href="#">@Tobira_xiexie</a></li>
+					<li><a href="https://twitter.com/nyaratakumi">@nyaratakumi</a></li>
+					<li><a href="https://twitter.com/_Ghostrick_">@_Ghostrick_</a></li>
+					<li><a href="https://twitter.com/Tobira_xiexie">@Tobira_xiexie</a></li>
 				</ul>
 			</div>
 			<div class="three-block">
