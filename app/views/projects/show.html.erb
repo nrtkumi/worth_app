@@ -3,11 +3,11 @@
     <%= javascript_include_tag 'jquery.oncssanimationend', 'data-turbolinks-track' => true %>
     <div class="sp-menu sp">
       <ul>
-          <li><a href="#"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
-          <li><a href="#"><i class="fa fa-list"></i>ワード検索</a></li>
-          <li><a href="#"><i class="fa fa-asterisk"></i>カテゴリ検索</a></li>
-          <li>
-              <%= link_to  user_path(current_user.id) do %>
+          <li><a href="/projects/new"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
+          <li><a href="/search"><i class="fa fa-list"></i>ワード検索</a></li>
+          <li><a href="/search"><i class="fa fa-asterisk"></i>カテゴリ検索</a></li>
+          <li><% if user_signed_in? %>
+              <%= link_to  user_path(current_user.id) %>
               <i class="fa fa-user"></i>マイページ
               <% end %>
           </li>
@@ -32,9 +32,11 @@
                         <a href="#"><i class="fa fa-user"></i>ユーザー<i class="fa fa-caret-down"></i></a>
                         <ul class="drop-down">
                             <li><hr></li>
+                            <% if user_signed_in? %>
                             <li>
                                 <%= link_to 'マイページ', user_path(current_user.id) %>
                             </li>
+                            <% end %>
                             <li>
                                 <% if user_signed_in? %>
                                     <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
@@ -81,15 +83,15 @@
                             <% end %>
                         </div>
                     <% end %>
-                <% end %>
-                <div class="chat"><a href="#"><i class="fa fa-comment" aria-hidden="true"></i>チャット</a></div>
-                <% if current_user?(@project.user) %>
-                    <div class="trash">
+                    <div class="chat"><a href="#"><i class="fa fa-comment" aria-hidden="true"></i>チャット</a></div>
+                    <% if current_user?(@project.user) %>
+                      <div class="trash">
                         <%= link_to project_path(@project.id), method: "delete", "data-confirm" => "本当に削除しますか？" do %>
                             <i class="fa fa-trash-o" aria-hidden="true"></i>削除
-                        <% end %>
+                    <% end %>
                     </div>
                 <% end %>
+              <% end %>
             </div>
         </div>
         <div class="owner-info">
@@ -120,7 +122,7 @@
     <section class="footer">
         <div class="first">
             <ul>
-                <li><a href="#">プロジェクトを作る</a></li>
+                <li><a href="/projects/new">プロジェクトを作る</a></li>
                 <li><a href="#">Worseについて</a></li>
             </ul>
         </div>
@@ -128,11 +130,13 @@
             <div class="one-block">
                 <h5>Menu</h5>
                 <ul>
-                    <li><a href="#">プロジェクトを作る</a></li>
-                    <li><a href="#">ワード検索</a></li>
-                    <li><a href="#">カテゴリ検索</a></li>
-                    <li><a href="#">ユーザーページ</a></li>
-                    <li><a href="#">チャット</a></li>
+                    <li><a href="/projects/new">プロジェクトを作る</a></li>
+                    <li><a href="/search">ワード検索</a></li>
+                    <li><a href="/search">カテゴリ検索</a></li>
+                    <% if user_signed_in? %>
+                    <li><%= link_to 'ユーザーページ', user_path(current_user.id) %></li>
+                    <% end %>
+                    <li><a href="/chat-list">チャット</a></li>
                     <li>
                         <% if user_signed_in? %>
                             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
@@ -145,9 +149,9 @@
             <div class="twe-block">
                 <h5>developer</h5>
                 <ul>
-                    <li><a href="#">@nyaratakumi</a></li>
-                    <li><a href="#">@_Ghostrick_</a></li>
-                    <li><a href="#">@Tobira_xiexie</a></li>
+                    <li><a href="https://twitter.com/nyaratakumi">@nyaratakumi</a></li>
+                    <li><a href="https://twitter.com/_Ghostrick_">@_Ghostrick_</a></li>
+                    <li><a href="https://twitter.com/Tobira_xiexie">@Tobira_xiexie</a></li>
                 </ul>
             </div>
             <div class="three-block">
