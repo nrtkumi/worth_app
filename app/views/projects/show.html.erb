@@ -11,7 +11,7 @@
               <i class="fa fa-user"></i>マイページ
               <% end %>
           </li>
-          <li><a href="#"><i class="fa fa-commenting-o"></i>チャット</a></li>
+          <li><a href="/chat-list"><i class="fa fa-commenting-o"></i>チャット</a></li>
           <li class="close"><a href="#"><i class="fa fa-times-circle"></i>閉じる</a></li>
       </ul>
     </div>
@@ -26,8 +26,8 @@
                 <!-- phone -->
 
                 <ul class="fix-list pc">
-                    <li><a href="#"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
-                    <li><a href="#"><i class="fa fa-search"></i>探す</a></li>
+                    <li><a href="/projects/new"><i class="fa fa-sticky-note"></i>新規掲載</a></li>
+                    <li><a href="/search"><i class="fa fa-search"></i>探す</a></li>
                     <li  class="drop-child">
                         <a href="#"><i class="fa fa-user"></i>ユーザー<i class="fa fa-caret-down"></i></a>
                         <ul class="drop-down">
@@ -46,7 +46,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="#"><i class="fa fa-commenting-o"></i>チャット</a></li>
+                    <li><a href="/chat-list"><i class="fa fa-commenting-o"></i>チャット</a></li>
                 </ul>
             </div>
         </div>
@@ -114,7 +114,7 @@
                 </p>
             </div>
             <p class="view-profile">
-                <%= link_to 'プロフィールを見る ', user_path(@project.user) %>
+                <%= link_to 'プロフィールを見る', user_path(@project.user) %>
                 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
             </p>
         </div>
@@ -123,7 +123,7 @@
         <div class="first">
             <ul>
                 <li><a href="/projects/new">プロジェクトを作る</a></li>
-                <li><a href="#">Worseについて</a></li>
+                <li><a href="#">Worthについて</a></li>
             </ul>
         </div>
         <div class="second">
