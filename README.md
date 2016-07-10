@@ -5,4 +5,4 @@
 
 ## Developer
   <https://twitter.com/nyaratakumi>
-<https://twitter.com/_Ghostrick_>
+  <https://twitter.com/_Ghostrick_>
