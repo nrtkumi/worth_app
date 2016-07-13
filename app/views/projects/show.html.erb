@@ -83,7 +83,7 @@
                             <% end %>
                         </div>
                     <% end %>
-                    <div class="chat"><a href="#"><i class="fa fa-comment" aria-hidden="true"></i>チャット</a></div>
+                    <div class="chat"><a href="/projects/<%= @project.id %>/chat"><i class="fa fa-comment" aria-hidden="true"></i>チャット</a></div>
                     <% if current_user?(@project.user) %>
                       <div class="trash">
                         <%= link_to project_path(@project.id), method: "delete", "data-confirm" => "本当に削除しますか？" do %>
