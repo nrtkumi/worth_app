@@ -71,7 +71,9 @@
 			<ul class="another_info">
 				<li class="not-edit"><i class="fa fa-cog"></i><%= @user.job %></li>
 				<li class="edit-hide"><i class="fa fa-cog"></i><%= f.text_field :job %></li>
+				<% unless @user.url == nil %>
 				<li class="not-edit"><i class="fa fa-link"></i><%= link_to @user.url, @user.url %></li>
+				<% end %>
 				<li class="edit-hide"><i class="fa fa-link"></i><%= f.text_field :url %></li>
 			</ul>
 			<p style="clear: both"></p>

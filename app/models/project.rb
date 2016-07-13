@@ -16,9 +16,25 @@ class Project < ActiveRecord::Base
   def set_project_image(file)
     if !file.nil?
       file_name = file.original_filename
+      type = extension_img(file_name)
+      file_name = SecureRandom.urlsafe_base64 + type
       File.open("public/project_images/#{file_name}", 'wb'){|f| f.write(file.read)}
       # File.open("../#{file_name}", 'wb'){|f| f.write(file.read)}
       self.image = file_name
+    end
+  end
+
+  def extension_img(name)
+    extension = File.extname(name).downcase
+    case extension
+    when ".jpg"
+      return ".jpg"
+    when ".jpeg"
+      return ".jpeg"
+    when ".png"
+      return ".png"
+    when ".gif"
+      return ".gif"
     end
   end
 
