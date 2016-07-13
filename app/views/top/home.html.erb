@@ -182,99 +182,14 @@
 <section class="main-item-list new">
 	<h2 class="sec-title"><i class="fa fa-paw"></i>新着プロジェクト</h2>
 	<p class="sec-des">最近掲載されたプロジェクトたちです</p>
-				<div class="item-space">
-			<div class="main-item">
-				<a href="#">
-					<%= image_tag 'sample4.jpg' %>
-				</a>
-				<h3 class="item-title">
-					jsエンジニア募集
-				</h3>
-				<p>
-					<i class="fa fa-check-square-o"></i>Node.js Angular.jsがバリバリ書けるエンジニアを探しています
-				</p>
-				<p>
-					<i class="fa fa-user"></i>nagimaru
-				</p>
-				<p>
-					<i class="fa fa-tag"></i>プログラミング
-				</p>
-				<p class="hart">
-					<i class="fa fa-heart"></i>999
-				</p>
-			</div>
-		</div>
-
-		<div class="item-space">
-			<div class="main-item">
-				<a href="#">
-					<%= image_tag 'sample2.jpg' %>
-				</a>
-				<h3 class="item-title">
-					Erlangエンジニア及びデザイナー募集
-				</h3>
-				<p>
-					<i class="fa fa-check-square-o"></i>オォン
-				</p>
-				<p>
-					<i class="fa fa-user"></i>nagimaru
-				</p>
-				<p>
-					<i class="fa fa-tag"></i>プログラミング
-				</p>
-				<p class="hart">
-					<i class="fa fa-heart"></i>999
-				</p>
-			</div>
-		</div>
-
-		<div class="item-space">
-			<div class="main-item">
-				<a href="#">
-					<%= image_tag 'sample.jpg' %>
-				</a>
-				<h3 class="item-title">
-					紙をください
-				</h3>
-				<p>
-					<i class="fa fa-check-square-o"></i>トイレのペーパーが切れて困っています。1Fの男子トイレまでお願いします。
-				</p>
-				<p>
-					<i class="fa fa-user"></i>学生A
-				</p>
-				<p>
-					<i class="fa fa-tag"></i>トイレ
-				</p>
-				<p class="hart">
-					<i class="fa fa-heart"></i>0
-				</p>
-			</div>
-		</div>
-
-		<div class="item-space">
-			<div class="main-item">
-				<a href="#">
-					<%= image_tag 'sample3.jpg' %>
-				</a>
-				<h3 class="item-title">
-					jsエンジニア募集
-				</h3>
-				<p>
-					<i class="fa fa-check-square-o"></i>Node.js Angular.jsがバリバリ書けるエンジニアを探しています
-				</p>
-				<p>
-					<i class="fa fa-user"></i>nagimaru
-				</p>
-				<p>
-					<i class="fa fa-tag"></i>プログラミング
-				</p>
-				<p class="hart">
-					<i class="fa fa-heart"></i>999
-				</p>
-			</div>
-		</div>
-
-
+	<% @new.each do |project| %>
+		<%= render 'projects/project', project: project %>
+	<% end %>
+	<div class="viewmore">
+		<a href="#">
+			<p>もっと見る<i class="fa fa-arrow-right"></i></p>
+		</a>
+	</div>
 	</section>
 <section class="main-item-list succes">
 	<h2 class="sec-title"><i class="fa fa-paper-plane"></i>マッチング成功</h2>
