@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   delete 'unlike/:project_id' => 'likes#unlike', as: 'unlike'
   get 'search' => 'top#search'
   get 'chat-list', to: 'projects#chatlist'
+  get 'new_projects' => 'projects#new_projects'
   root 'top#home'
 
 end

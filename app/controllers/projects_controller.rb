@@ -83,6 +83,12 @@ class ProjectsController < ApplicationController
     @lists = List.where(user_id: current_user.id)
   end
 
+  def new_projects
+    @projects = Project.all.order("created_at DESC").limit(50)
+    @title = '新着プロジェクト'
+    render :index
+  end
+
   private
 
   def project_params

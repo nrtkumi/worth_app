@@ -56,6 +56,7 @@
 	</section>
 	<section class="intro-sec">
 		<div class="intro-div">
+		<% if @result %>
 			<% if @search_mode == 'keyword' %>
 				<h3>「<%= @result %>」が含まれるプロジェクト</h3>
 				<p>掲載プロジェクトは<%= @projects.count %>件です</p>
@@ -63,6 +64,9 @@
 				<h3>「<%= @result %>」カテゴリのプロジェクト</h3>
 				<p><%= category_intro(@result) %></p>
 			<% end %>
+		<% elsif @title %>
+		<h3><%= @title %></h3>
+		<% end %>
 		</div>
 	</section>
 	<section class="main-item-list">
