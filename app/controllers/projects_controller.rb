@@ -89,6 +89,12 @@ class ProjectsController < ApplicationController
     render :index
   end
 
+  def pick_up
+    @projects = Project.order("RANDOM()").limit(50)
+    @title = 'ピックアップ'
+    render :index
+  end
+
   private
 
   def project_params

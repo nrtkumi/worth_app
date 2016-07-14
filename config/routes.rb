@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'search' => 'top#search'
   get 'chat-list', to: 'projects#chatlist'
   get 'new_projects' => 'projects#new_projects'
+  get 'pick_up' => 'projects#pick_up'
   root 'top#home'
 
 end
