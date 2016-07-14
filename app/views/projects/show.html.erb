@@ -96,7 +96,11 @@
         </div>
         <div class="owner-info">
             <div class="img-wra">
-                <%= image_tag "/user_images/#{@project.user.image}" %>
+              <% if @project.user.image %>
+                  <%= image_tag "/user_images/#{@user.image}" %>
+              <% else %>
+                  <%= image_tag "default.jpeg" %>
+              <% end %>
             </div>
             <div class="info-text">
                 <h6 class="owner-name"><%= @project.user.username %></h6>
