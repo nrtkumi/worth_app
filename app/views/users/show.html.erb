@@ -57,7 +57,7 @@
 				<% if @user.image %>
   					<%= image_tag "/user_images/#{@user.image}" %>
 				<% else %>
-  					<%= image_tag "default.jpeg" %>
+  					<img src="<%= asset_path "default.jpg" %>" />
 				<% end %>
 				<%= f.file_field :image , class:'edit-hide' %>
 				<div class="edit-fil edit-hide"><i class="fa fa-camera"></i></div>

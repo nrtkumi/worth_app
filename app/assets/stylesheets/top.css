@@ -2,10 +2,10 @@
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
 @font-face {
 	font-family: 'hosofont';
-	src: url('03SmartFontUI.otf'); 
+	src: url('03SmartFontUI.otf');
 }
 
-/* use color 
+/* use color
 	Blue
 	> #6495ED
 	> #93B5F2
@@ -47,7 +47,7 @@ body {
 	font-family: 'hosofont';
 	padding-left: .5em;
 	font-size: 1em;
-	color:#999;	
+	color:#999;
 	margin: 0;
 	margin-bottom: 1em;
 }
@@ -56,7 +56,6 @@ body {
 	background-position:center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-image: url( 'top.jpg' );
 	margin: 0;
 	width: 100%;
 	min-height: 400px;
@@ -168,7 +167,7 @@ body {
 	color: #666;
 	list-style: none;
 	font-size: 90%;
-	margin-left:1em; 
+	margin-left:1em;
 	clear: both;
 	padding: .5em 0;
 	position: relative;
@@ -178,14 +177,14 @@ body {
 .drop-down > li hr {
 	background:#6495ED;
 	border:0;
-	height: 1px; 
+	height: 1px;
 }
 
 
 .fa-caret-down {
 	margin-right: 0!important;
 	margin-left: .5em;
-	font-size: 20%; 
+	font-size: 20%;
 }
 .title-box {
 	margin:auto;
@@ -343,7 +342,7 @@ body {
 	margin: 0 1em;
 	border-radius: 5px;
 	background: #6495ED;
-	font-family:'hosofont'; 
+	font-family:'hosofont';
 	color: white;
 	opacity: 1;
 	transition: all .5s;
@@ -453,7 +452,7 @@ a:hover > .succes-fil > p {
 	position: absolute;
 	bottom:0;
 	right: 20px;
-	font-size: 1em; 
+	font-size: 1em;
 	color: #F74D4D;
 }
 .hart > i {
@@ -470,14 +469,14 @@ a:hover > .succes-fil > p {
 	font-family: 'hosofont';
 	width: 100%;
 	text-align: right;
-	padding: 0 .5em; 
+	padding: 0 .5em;
 }
 .viewmore a {
 	font-size: 1.15em;
 	color: #555;
 }
 .viewmore i {
-	margin-left: 0.5em; 
+	margin-left: 0.5em;
 	font-size: 130%;
 }
 
@@ -547,7 +546,7 @@ a:hover > .succes-fil > p {
 	color:white;
 	font-family: 'hosofont';
 	padding: 0;
-	margin:0; 
+	margin:0;
 }
 
 .clear {
@@ -671,7 +670,7 @@ a:hover > .succes-fil > p {
 		display: none;
 	}
 	.fix-contents h4 {
-		font-size:1.5em; 
+		font-size:1.5em;
 	}
 	.sp-bar {
 		font-size: 2em!important;
@@ -744,7 +743,7 @@ a:hover > .succes-fil > p {
 		width: 100%;
 	}
 	.sec-title {
-		font-size:1.6em; 
+		font-size:1.6em;
 	}
 	.footer .second > div {
 		width: 100%;

@@ -99,7 +99,7 @@
               <% if @project.user.image %>
                   <%= image_tag "/user_images/#{@user.image}" %>
               <% else %>
-                  <%= image_tag "default.jpeg" %>
+                  <img src="<%= asset_path "default.jpg" %>" />
               <% end %>
             </div>
             <div class="info-text">
