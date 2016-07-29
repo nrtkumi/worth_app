@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'hosofont';
-	src: url('03SmartFontUI.otf'); 
+	src: font-url('03SmartFontUI.otf');
 }
 a {
 	text-decoration: none;
@@ -10,7 +10,7 @@ a {
 	-webkit-overflow-scrolling: touch
 }
 body, html {
-	-webkit-text-size-adjust : 100% ; 
+	-webkit-text-size-adjust : 100% ;
 	width: 100%;
 	height: 100%;
 	background: #555;
@@ -59,7 +59,7 @@ section {
 /*    animation    */
 
 
-.edit > div { 
+.edit > div {
 	text-align: center; /* sample */
 	position: absolute;
 	top: 0;
@@ -72,7 +72,7 @@ section {
 
 
 /* show */
-.edit > div.show{ 
+.edit > div.show{
 	z-index: 100;
 	opacity: 1;
 	transform: scale(1) translateY(0);
@@ -81,7 +81,7 @@ section {
 
 
 /* hide */
-.edit > div.hide { 
+.edit > div.hide {
 	z-index: 0;
 	opacity: 0;
 	transform: scale(0) translateY(0);
@@ -90,7 +90,7 @@ section {
 /* tip & preview */
 
 .preview,
-.tips { 
+.tips {
 	text-align: center; /* sample */
 	position: absolute;
 	top: 0;
@@ -101,7 +101,7 @@ section {
 }
 
 .preview.show,
-.tips.show { 
+.tips.show {
 	z-index: 1000;
 	transform: scale(1) translateY(0);
 }
@@ -361,7 +361,7 @@ input[type="submit"] {
 }
 
 /* tips & preview */
- 
+
 .preview > h1,
 .tips > h1 {
 	text-align: left;
@@ -446,7 +446,7 @@ input[type="submit"] {
 	font-family: 'hosofont';
 	padding: 1em 0;
 	width: 95%;
-	margin:auto; 
+	margin:auto;
 	text-align: left;
 	clear: both;
 	float: none;
@@ -471,9 +471,9 @@ input[type="submit"] {
 .preview-text h5.min-title {
 	font-size: 1.3em;
 	padding: 0.15em 0;
-	margin:1em 0; 
+	margin:1em 0;
 	border-bottom:  solid 2px #93B5F2;
-	border-left: solid 5px #93B5F2; 	
+	border-left: solid 5px #93B5F2;
 }
 
 
@@ -521,7 +521,7 @@ input[type="submit"] {
 }
 
 
-@media screen and (max-width: 850px) and (min-width: 451px) { 
+@media screen and (max-width: 850px) and (min-width: 451px) {
 	.btn-list span {
 		display: none;
 	}
@@ -539,10 +539,10 @@ input[type="submit"] {
 	.end-btn a i  {
 		margin-left: 0em;
 	}
-	
+
 	/*   contents   */
-	
-	
+
+
 	.next-btn {
 		margin-top: 4em;
 		margin-bottom: 5em;
@@ -551,13 +551,13 @@ input[type="submit"] {
 		font-size: 1.1em;
 		padding: .75em 1em;
 	}
-	
+
 
 	.submit-btn {
 		font-size: 1.1em;
 		padding: .75em 1em;
 	}
-		
+
 	.edit > div > h3{
 		font-size: 1.3em;
 		margin-top: 5em;
@@ -565,7 +565,7 @@ input[type="submit"] {
 	.edit > .text-create > h3 {
 		margin-top: 5em;
 	}
-	
+
 	.edit > .title-create input {
 	    width: 15em;
 	    max-width: 70%;
@@ -584,11 +584,11 @@ input[type="submit"] {
 	 .edit > .text-create > p{
 		margin-top: .9em;
 	}
-	
+
 	/* tag */
 
 	.edit > .tag-create > .select-fake {
-	
+
 		width: 90%;
 		margin: auto;
 		padding: .5em;
@@ -609,7 +609,7 @@ input[type="submit"] {
 		margin-right: .25em;
 	}
 
-	
+
 	/* img */
 	.edit > .image-create .up-zone {
 		width: 80%;
@@ -619,7 +619,7 @@ input[type="submit"] {
 	.edit > .image-create .up-zone > p {
 	    font-size: 1.1em;
 	}
-	
+
 	/* cap */
 	.edit > .cap-create textarea {
 	    width: 15em;
@@ -630,9 +630,9 @@ input[type="submit"] {
 	    transition: all .3s;
 
 	}
-	
+
 	/* text */
-	
+
 	.edit > .text-create  textarea {
 		width: 95%;
 		margin:auto;
@@ -640,32 +640,32 @@ input[type="submit"] {
 	    border: none;
 	}
 	.edit > div > p {
-		padding: 0 2em; 
+		padding: 0 2em;
 	}
 	/* tips & preview */
-	 
+
 	.preview > h1,
 	.tips > h1 {
 		padding: .5em;
 		font-size: 1.25em;
 	}
-	
+
 	.preview > .preview-wrapper{
 		width: 85%;
 		margin:3em auto 2em;
 		padding: 1em;
-		padding-bottom: 2em; 
+		padding-bottom: 2em;
 
 	}
 
-	
+
 	.preview > .preview-wrapper h3 {
 		font-family: 'hosofont';
 		font-size: 1.2em;
 		padding: .5em 0.2em;
 		border-bottom: solid 1px #93B5F2;
 	}
-	
+
 	.preview > .preview-wrapper .preview-status {
 		float: none;
 		width: 100%;
@@ -683,7 +683,7 @@ input[type="submit"] {
 	.preview > .preview-wrapper .preview-status ul li i {
 		margin-right: .25em;
 		color: #444;
-	
+
 	}
 	.preview > .preview-wrapper .preview-img {
 		float: none;
@@ -697,18 +697,18 @@ input[type="submit"] {
 	.preview > .preview-wrapper .preview-img img {
 	    border-radius: 1px;
 	}
-	
+
 	.preview-text {
 		font-size: .85em;
 		font-family: 'hosofont';
 		padding: 1.5em 0 0;
 		width: 95%;
-		margin:auto; 
+		margin:auto;
 		text-align: left;
 		clear: both;
 		float: none;
 	}
-	
+
 	.preview-text .bold {
 		font-weight: 900;
 		color: #000;
@@ -717,7 +717,7 @@ input[type="submit"] {
 	.preview-text h6.small-title {
 		font-size: 1em;
 		padding: 1em 0;
-	
+
 	}
 	.preview-text h6.min-title {
 		font-size: 1.1em;
@@ -728,10 +728,10 @@ input[type="submit"] {
 	.preview-text h5.min-title {
 		font-size: 1.2em;
 		padding: 0.15em .5em;
-		margin:1em 0; 	
+		margin:1em 0;
 	}
-	
-	
+
+
 	.check-wra {
 		position: fixed;
 		top: 0;
