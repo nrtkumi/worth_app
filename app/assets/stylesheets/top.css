@@ -2,7 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
 @font-face {
 	font-family: 'hosofont';
-	src: asset-url('03SmartFontUI.otf');
+	src: url('03SmartFontUI.otf');
 }
 
 /* use color
