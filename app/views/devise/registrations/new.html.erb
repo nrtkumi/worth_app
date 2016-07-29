@@ -24,17 +24,15 @@
       <p class="message">初めてですか? <a href="#">アカウント作成</a></p>
       <hr>
       <button>
-        Twitterログイン
-       
+        <%= link_to 'Twitterログイン', user_twitter_omniauth_authorize_path %>
+
       </button>
       <% end %>
   </div>
 </div>
 <script>
 $(function(){
-$('.message a').click(function(){
    $('form').animate({height: "toggle", opacity: "toggle"},500);
-});
 
 bganime('canvas-script');
 
