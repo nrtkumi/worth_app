@@ -97,7 +97,7 @@
         <div class="owner-info">
             <div class="img-wra">
               <% if @project.user.image %>
-                  <%= image_tag "/user_images/#{@user.image}" %>
+                  <%= image_tag "/user_images/#{@project.user.image}" %>
               <% else %>
                   <img src="<%= asset_path "default.jpg" %>" />
               <% end %>
