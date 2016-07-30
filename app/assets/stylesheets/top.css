@@ -372,7 +372,7 @@ body {
 	box-shadow: 6px 6px 6px rgba(0,0,0,0.05);
 	position: relative;
 	background: #fff;
-	height: 400px;
+	height: auto;
 	width: 90%;
 	margin: auto;
 	border-style: solid;
