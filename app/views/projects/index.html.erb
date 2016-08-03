@@ -127,22 +127,27 @@ function ThisPhone(){
 };
 
 
-function img_resize(){
-   	$('.main-item img ').each(function(){
-		img_width = $('.main-item').width();
-		img_height =  (img_width / 5) * 3 ;
-		$(this).css({height: img_height + 'px'});
-   	});
-};
+function item_resize() {
+	bigger = 0;
+	$(".main-item").each(function(){
+
+		this_height = $(this).outerHeight();
+
+		if(this_height > bigger)
+			bigger = this_height;
+	});
+	console.log(bigger);
+	$(".main-item").css({height: bigger + "px"});
+}
+
 
 $(window).load(function () {
-    img_resize();
-
+	item_resize();
     $('.heart-project').css({display:'none'});
 
 	if(ThisPhone() == false){
     	$(window).on('resize',function() {
-    		img_resize();
+    		item_resize();
 		});
 	}
 

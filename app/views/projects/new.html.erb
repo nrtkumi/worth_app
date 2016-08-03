@@ -36,6 +36,7 @@
             <h3><i class="fa fa-cube" aria-hidden="true"></i>プロジェクトタイトル</h3>
             <%= f.text_field :title ,placeholder:"キーワード"%>
             <p>叶えたい事を入力してね!!</p>
+            <p class="alert-msg">20文字以内でお願い!!</p>
 
             <div class="next-btn">
                 <a href="javascript:nextDiv()"><span>Next Step</span></a>
@@ -293,6 +294,16 @@
 
         },1);
 
+        //title
+        $(".title-create input").on("keyup",function(){
+            title_now_text = $(this).val();
+
+            if(title_now_text.length > 20) {
+                $( '.title-create .alert-msg' ).addClass( 'show-msg' );
+            } else {
+                $( '.title-create .alert-msg' ).removeClass( 'show-msg' );
+            }
+        });
 
         // select 
         $( '.select-fake a' ).on('click',function(){
@@ -361,9 +372,9 @@
         $(".cap-create textarea").on("keyup",function(){
             cap_now_text = $(this).val();
             if(cap_now_text.length > 30) {
-                $( '.alert-msg' ).addClass( 'show-msg' );
+                $( '.cap-create .alert-msg' ).addClass( 'show-msg' );
             } else {
-                $( '.alert-msg' ).removeClass( 'show-msg' );
+                $( '.cap-create .alert-msg' ).removeClass( 'show-msg' );
             }
         });
 
@@ -426,12 +437,16 @@
             error_text = "";
             if($(".title-create input").val() == "")
                 error_text = error_text + "タイトルが入力されてません<br>";
+            if($(".title-create input").val().length > 20)
+                error_text = error_text + "タイトルは20文字までです<br>";
             if(file == undefined)
                 error_text = error_text + "画像がアップロードされてません<br>";
             if($( '[type="checkbox"]:checked' ).html() == undefined)
                 error_text = error_text + "タグが選択されてません<br>";
             if($(".cap-create textarea").val() == "")
                 error_text = error_text + "キャプションが入力されてません<br>";
+            if($(".cap-create textarea").val().length > 30)
+                error_text = error_text + "キャプションは30文字までです<br>";
             if($(".text-create textarea").val() == "")
                 error_text = error_text + "本文が入力されてません<br>";
 
