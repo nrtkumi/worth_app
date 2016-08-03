@@ -397,6 +397,11 @@ body {
 .main-item a {
 	width: 100%;
 	display: block;
+	color: #666;
+	transition: all .25s;
+}
+.main-item a:hover {
+	color: #93B5F2;
 }
 
 .main-item a .resize_wra {
