@@ -371,7 +371,7 @@ body {
 	box-shadow: 6px 6px 6px rgba(0,0,0,0.05);
 	position: relative;
 	background: #fff;
-	height: 400px;
+	height: auto;
 	width: 90%;
 	margin: auto;
 	border-style: solid;
@@ -388,15 +388,38 @@ body {
 	letter-spacing: 1px;
 	font-weight: 100;
 }
-.main-item a {
+.main-item .img_link {
 	position: relative;
 	overflow: hidden;
-	display: table;
+	
+}
+.main-item a {
+	width: 100%;
+	display: block;
+	color: #666;
+	transition: all .25s;
+}
+.main-item a:hover {
+	color: #93B5F2;
 }
 
+.main-item a .resize_wra {
+	position: relative;
+    width: 100%;
+}
+.main-item a .resize_wra:before {
+    content:"";
+    display: block;
+    padding-top: 60%;
+}
 .main-item a img {
 	width: 100%;
-	position: relative;
+	position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+	transition: all .5s;
 }
 
 .succes-fil {
