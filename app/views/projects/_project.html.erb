@@ -3,7 +3,9 @@
 					<div class="item-space">
 						<div class="main-item">
 							<a class="img_link" href="/projects/<%= project.id %>">
-								<%= image_tag "/project_images/#{project.image}" ,:size => '30x20'%>
+								<div class="resize_wra">
+									<%= image_tag "/project_images/#{project.image}"%>
+								</div>
 							</a>
 							<h3 class="item-title">
 								<%= link_to project.title, project_path(project.id) %>
